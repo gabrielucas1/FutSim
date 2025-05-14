@@ -18,6 +18,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.futsim.ui.telas.TelaInicial
 import com.example.futsim.ui.telas.TelaPrincipal
 import com.example.futsim.ui.telas.TelaTeste
+import com.example.futsim.ui.telas.TelaMataMata
+import com.example.futsim.ui.telas.TelaCampCriados
+import com.example.futsim.ui.telas.TelaPontosCorridos
+
+
 
 
 class MainActivity : ComponentActivity() {
@@ -25,12 +30,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FutSimTheme {
+
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "tela_inicial"){
                     composable("tela_inicial") {TelaInicial(navController)}
                     composable("tela_principal") {TelaPrincipal(navController)}
                     composable("tela_teste") {TelaTeste(navController)}
-
+                    composable("tela_campCriados") {TelaCampCriados(navController)}
+                    composable("tela_mataMata") {TelaMataMata(navController) }
+                    composable("tela_pontosCorridos") { TelaPontosCorridos(navController)  }
                 }
 
             }
@@ -38,18 +46,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     FutSimTheme {
-        Greeting("Android")
     }
 }
