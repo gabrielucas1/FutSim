@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,20 +13,18 @@ import androidx.navigation.NavHostController
 import com.example.futsim.ui.componentes.ButtonUniversal
 
 @Composable
-fun TelaPrincipal (navHostController: NavHostController){
-    Column (modifier = Modifier.fillMaxSize(),
+fun TelaFaseGrupos(navHostController: NavHostController){
+    Column(modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment =  androidx.compose.ui.Alignment.CenterHorizontally){
+        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally ) {
+        Text("TELA FASE DE GRUPOS")
 
-        Text("TELA PRINCIPAL ON")
-        ButtonUniversal( texto = "Tela mata mata",
-            onClick = {navHostController.navigate("tela_MataMata")},
-            modifier = Modifier.padding(top = 400.dp).width(380.dp)
+        ButtonUniversal(
+            text = "tela principal",
+            onClick = {navHostController.navigate("tela_Principal")},
+            modifier = Modifier.padding(top = 10.dp, bottom = 50.dp),
+
         )
 
-
-
-
     }
-
 }

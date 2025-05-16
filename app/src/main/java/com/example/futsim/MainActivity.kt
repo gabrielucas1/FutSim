@@ -20,7 +20,7 @@ import com.example.futsim.ui.telas.TelaPrincipal
 import com.example.futsim.ui.telas.TelaTeste
 import com.example.futsim.ui.telas.TelaMataMata
 import com.example.futsim.ui.telas.TelaCampCriados
-import com.example.futsim.ui.telas.TelaPontosCorridos
+import com.example.futsim.ui.telas.TelaFaseGrupos
 
 
 
@@ -33,12 +33,12 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "tela_inicial"){
-                    composable("tela_inicial") {TelaInicial(navController)}
-                    composable("tela_principal") {TelaPrincipal(navController)}
-                    composable("tela_teste") {TelaTeste(navController)}
-                    composable("tela_campCriados") {TelaCampCriados(navController)}
-                    composable("tela_mataMata") {TelaMataMata(navController) }
-                    composable("tela_pontosCorridos") { TelaPontosCorridos(navController)  }
+                    composable("tela_Inicial") {TelaInicial(navController)}
+                    composable("tela_Principal") {TelaPrincipal(navController)}
+                    composable("tela_CriandoCamp") {TelaTeste(navController)}
+                    composable("tela_CampCriados") {TelaCampCriados(navController)}
+                    composable("tela_MataMata") {TelaMataMata(navController) }
+                    composable("TelaFaseGrupos") { TelaFaseGrupos(navController)  }
                 }
 
             }

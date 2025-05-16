@@ -10,19 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57e81383-b47a-4eb8-8a01-bcd1ed504f9d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/componentes/BotaoUniversal.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_MataMata.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_campCriados.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_pontosCorridos.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_inicial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_inicial.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_principal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_principal.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_teste.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_teste.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/theme/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/componentes/BotaoUniversal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/componentes/BotaoUniversal.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_MataMata.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_MataMata.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_campCriados.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_CampCriados.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_inicial.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_Inicial.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_pontosCorridos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_FaseGrupos.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_principal.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_Principal.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_teste.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/futsim/ui/telas/tela_CriandoCamp.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +79,7 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;TCD-13&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabriel/Documentos/PDM/tfc02-criando-o-primeiro-android-app-boys4/ToDoBoys4&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.language.Kotlin&quot;
   }
 }</component>
