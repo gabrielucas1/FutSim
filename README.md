@@ -62,13 +62,13 @@ Define o título do commit referente a parte do projeto afetada, como um módulo
 ### 📝 Exemplo
 
 ```bash
-git commit -m "refactor(cryptography):
+git commit -am "refactor(cryptography):
 > Aprimora a indentação."
 
-git commit -m "fix(login-page):
+git commit -am "fix(login-page):
 > Corrige bug de login nulo."
 
-git commit -m "feat(carousel):
+git commit -am "feat(carousel):
 > Implementa o carrossel na página inicial."
 ```
 
