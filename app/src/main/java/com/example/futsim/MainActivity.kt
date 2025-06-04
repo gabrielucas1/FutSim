@@ -1,59 +1,57 @@
 package com.example.futsim
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.Room
+import com.example.futsim.data.FutSimDatabase
+import com.example.futsim.data.FutSimRepository
+import com.example.futsim.ui.theme.FutSimTheme
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import com.example.futsim.ui.viewmodel.FutSimViewModelFactory
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.futsim.ui.theme.FutSimTheme
 import androidx.navigation.compose.rememberNavController
-import com.example.futsim.ui.telas.TelaInicial
-import com.example.futsim.ui.telas.TelaPrincipal
-import com.example.futsim.ui.telas.TelaTeste
-import com.example.futsim.ui.telas.TelaMataMata
-import com.example.futsim.ui.telas.TelaCampCriados
-import com.example.futsim.ui.telas.TelaFaseDeGrupos
-import com.example.futsim.ui.telas.TelaPontosCorridos
+import com.example.futsim.ui.telas.*
 
+val LocalFutSimViewModel = staticCompositionLocalOf<FutSimViewModel> { error("ViewModel not provided") }
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("ComposableDestinationInComposeScope")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val database = Room.databaseBuilder(
+            applicationContext,
+            FutSimDatabase::class.java,
+            "futsim_db"
+        ).build()
+        val repository = FutSimRepository(
+            database.timeDao(),
+            database.campeonatoDao(),
+            database.partidaDao()
+        )
+        val factory = FutSimViewModelFactory(repository)
+
         setContent {
             FutSimTheme {
-
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "tela_inicial") {
-                    composable("tela_Inicial") { TelaInicial(navController) }
-                    composable("tela_Principal") { TelaPrincipal(navController) }
-                    composable("tela_CriandoCamp") { TelaTeste(navController) }
-                    composable("tela_CampCriados") { TelaCampCriados(navController) }
-                    composable("tela_MataMata") { TelaMataMata(navController) }
-                    composable("tela_FaseGrupos") { TelaFaseDeGrupos(navController) }
-                    composable("tela_PontosCorridos") {
-                        TelaPontosCorridos(navController)
-                        //composable("tela_FaseGrupos/{nomeCampeonato}") { backStackEntry ->
-                        // val nomeCampeonato = backStackEntry.arguments?.getString("nomeCampeonato") ?: ""
-                        // TelaFaseDeGrupos(navController, nomeCampeonato)
-                        //}
+                val viewModel: FutSimViewModel = viewModel(factory = factory)
 
-                        //}
+                CompositionLocalProvider(LocalFutSimViewModel provides viewModel) {
+                    NavHost(navController = navController, startDestination = "tela_inicial") {
+                        composable("tela_inicial") { TelaInicial(navController) }
+                        composable("tela_principal") { TelaPrincipal(navController) }
+                        composable("tela_CriandoCamp") { TelaTeste(navController) }
+                        composable("tela_CampCriados") { TelaCampCriados(navController) }
+                        composable("tela_MataMata") { TelaMataMata(navController) }
+                        composable("tela_FaseGrupos") { TelaFaseDeGrupos(navController) }
+                        composable("tela_PontosCorridos") { TelaPontosCorridos(navController) }
                     }
-
                 }
             }
-        }
-    }
-
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        FutSimTheme {
         }
     }
 }

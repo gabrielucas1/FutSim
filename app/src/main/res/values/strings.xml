@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FutSim</string>
+    <string name="tela_inicial">Tela Inicial</string>
+    <string name="criar_campeonato">Criar Campeonato</string>
+    <string name="campeonatos_criados">Campeonatos Criados</string>
+    <string name="iniciar_simulador">INICIAR SIMULADOR</string>
 </resources>
