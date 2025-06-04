@@ -1,0 +1,11 @@
+package com.example.futsim.data
+
+import androidx.room.*
+import com.example.futsim.model.Time
+
+@Dao
+interface TimeDao {
+    @Insert suspend fun inserir(time: Time): Long
+    @Query("SELECT * FROM times") suspend fun listarTodos(): List<Time>
+    @Delete suspend fun deletar(time: Time)
+}
