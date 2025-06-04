@@ -16,9 +16,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.futsim.data.CampeonatoRepository
 import com.example.futsim.ui.componentes.ButtonUniversal
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun TelaPontosCorridos(navHostController: NavHostController) {
+fun TelaPontosCorridos(
+    navHostController: NavHostController,
+    viewModel: FutSimViewModel = viewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()

@@ -19,23 +19,28 @@ import androidx.navigation.NavHostController
 import com.example.futsim.ui.componentes.ButtonUniversal
 
 @Composable
-fun TelaInicial (navHostController: NavHostController) {
+fun TelaInicial(
+    navHostController: NavHostController,
+    viewModel: FutSimViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+) {
     Column(
-        modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.tertiary)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = MaterialTheme.colorScheme.tertiary)
             .padding(8.dp),
-             verticalArrangement = Arrangement.Center,
-             horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ButtonUniversal(
-            text = "INICIAR SIMULADOR",
-            onClick = { navHostController.navigate("tela_principal")},
-            modifier = Modifier.padding(top = 400.dp).width(380.dp).height(45.dp),
+            text = stringResource(id = R.string.iniciar_simulador),
+            onClick = { navHostController.navigate("tela_principal") },
+            modifier = Modifier
+                .padding(top = 400.dp)
+                .width(380.dp)
+                .height(45.dp),
             textColor = Color.White,
             fontSize = 30.sp,
-
-            )
-
+        )
     }
 }
-
 

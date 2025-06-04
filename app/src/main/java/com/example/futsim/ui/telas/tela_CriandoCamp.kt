@@ -27,12 +27,14 @@ import androidx.compose.ui.unit.sp
 import com.example.futsim.data.CampeonatoRepository
 import com.example.futsim.model.Campeonato
 import com.example.futsim.ui.componentes.ButtonUniversal
-import com.example.futsim.model.TipoCampeonato
-
-
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun TelaTeste(navHostController: NavHostController) {
+fun TelaTeste(
+    navHostController: NavHostController,
+    viewModel: FutSimViewModel = viewModel()
+) {
     var nome by remember { mutableStateOf("") }
     var tipoCampeonato by remember { mutableStateOf(TipoCampeonato.NENHUM) }
 

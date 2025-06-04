@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 data class TimeTabela(
     val posicao: Int,
@@ -27,7 +29,10 @@ data class TimeTabela(
 }
 
 @Composable
-fun TelaFaseDeGrupos(navController: NavHostController) {
+fun TelaFaseDeGrupos(
+    navController: NavHostController,
+    viewModel: FutSimViewModel = viewModel()
+) {
     val times = remember {
         mutableStateListOf(
             TimeTabela(1, "Palmeiras", 38, 19, 12, 2, 5, 30, 15),
