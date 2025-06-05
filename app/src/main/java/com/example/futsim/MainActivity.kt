@@ -11,13 +11,11 @@ import com.example.futsim.ui.theme.FutSimTheme
 import com.example.futsim.ui.viewmodel.FutSimViewModel
 import com.example.futsim.ui.viewmodel.FutSimViewModelFactory
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.futsim.ui.telas.*
-
-val LocalFutSimViewModel = staticCompositionLocalOf<FutSimViewModel> { error("ViewModel not provided") }
+import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

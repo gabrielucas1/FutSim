@@ -8,15 +8,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.futsim.ui.componentes.ButtonUniversal
-import com.example.futsim.LocalFutSimViewModel
-import androidx.compose.material3.Text
+import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import androidx.compose.ui.res.stringResource
 import com.example.futsim.R
 
 @Composable
 fun TelaPrincipal(navHostController: NavHostController) {
     val viewModel = LocalFutSimViewModel.current
-    val campeonatos by viewModel.campeonatos.collectAsState()
+    val campeonatos = viewModel.campeonatos.collectAsState().value
 
     Column(
         modifier = Modifier.fillMaxSize(),

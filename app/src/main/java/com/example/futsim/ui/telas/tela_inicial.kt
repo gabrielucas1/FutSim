@@ -1,6 +1,7 @@
 package com.example.futsim.ui.telas
 
 
+import com.example.futsim.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,16 +14,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.futsim.ui.componentes.ButtonUniversal
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 
 @Composable
-fun TelaInicial(
-    navHostController: NavHostController,
-    viewModel: FutSimViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
-) {
+fun TelaInicial(navHostController: NavHostController) {
+    val viewModel = LocalFutSimViewModel.current
     Column(
         modifier = Modifier
             .fillMaxSize()

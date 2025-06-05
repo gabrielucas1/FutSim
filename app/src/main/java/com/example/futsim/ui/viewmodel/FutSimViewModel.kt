@@ -58,4 +58,18 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
             repository.inserirPartida(partida)
         }
     }
+
+    fun atualizarCampeonato(campeonato: Campeonato) {
+        viewModelScope.launch {
+            repository.atualizarCampeonato(campeonato)
+            carregarCampeonatos()
+        }
+    }
+
+    fun deletarCampeonato(campeonato: Campeonato) {
+        viewModelScope.launch {
+            repository.deletarCampeonato(campeonato)
+            carregarCampeonatos()
+        }
+    }
 }
