@@ -23,10 +23,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.sp
 import com.example.futsim.data.CampeonatoRepository
-
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun TelaMataMata(navHostController: NavHostController) {
+fun TelaMataMata(
+    navHostController: NavHostController,
+    viewModel: FutSimViewModel = viewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()

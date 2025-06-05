@@ -16,9 +16,13 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.futsim.data.CampeonatoRepository
 import com.example.futsim.ui.componentes.ButtonUniversal
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 
 @Composable
 fun TelaPontosCorridos(navHostController: NavHostController) {
+    val viewModel = LocalFutSimViewModel.current
     Column(
         modifier = Modifier
             .fillMaxSize()

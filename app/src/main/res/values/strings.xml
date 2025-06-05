@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FutSim</string>
+    <string name="tela_inicial">Tela Inicial</string>
+    <string name="criar_campeonato">Criar Campeonato</string>
+    <string name="campeonatos_criados">Campeonatos Criados</string>
+    <string name="iniciar_simulador">INICIAR SIMULADOR</string>
+    <string name="editar_nome_campeonato">Editar nome do campeonato</string>
+    <string name="nome_campeonato">Nome do campeonato</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
 </resources>

@@ -27,12 +27,13 @@ import androidx.compose.ui.unit.sp
 import com.example.futsim.data.CampeonatoRepository
 import com.example.futsim.model.Campeonato
 import com.example.futsim.ui.componentes.ButtonUniversal
+import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import com.example.futsim.model.TipoCampeonato
-
-
 
 @Composable
 fun TelaTeste(navHostController: NavHostController) {
+    val viewModel = LocalFutSimViewModel.current
+
     var nome by remember { mutableStateOf("") }
     var tipoCampeonato by remember { mutableStateOf(TipoCampeonato.NENHUM) }
 
@@ -137,8 +138,7 @@ fun TelaTeste(navHostController: NavHostController) {
                 .height(60.dp),
             textColor = Color.White,
             onClick = {
-                val campeonato = Campeonato(nome, tipoCampeonato)
-                val novoCampeonato = Campeonato(nome, tipoCampeonato)
+                val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
 
                 when (tipoCampeonato) {
                     TipoCampeonato.MATA_MATA -> {
@@ -149,7 +149,7 @@ fun TelaTeste(navHostController: NavHostController) {
                         navHostController.navigate("tela_FaseGrupos")
                     }
                     TipoCampeonato.PONTOS_CORRIDOS -> {
-                        CampeonatoRepository.campeonatosPontosCorridos.add(novoCampeonato)
+                        CampeonatoRepository.campeonatosPontosCorridos.add(campeonato)
                         navHostController.navigate("tela_PontosCorridos")
                     }
                     TipoCampeonato.NENHUM -> {
@@ -158,6 +158,5 @@ fun TelaTeste(navHostController: NavHostController) {
                 }
             }
         )
-
     }
 }
