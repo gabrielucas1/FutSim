@@ -143,12 +143,7 @@ fun TelaTeste(navHostController: NavHostController) {
                 if (nome.isNotBlank() && tipoCampeonato != TipoCampeonato.NENHUM) {
                     val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
                     viewModel.inserirCampeonato(campeonato)
-                    when (tipoCampeonato) {
-                        TipoCampeonato.MATA_MATA -> navHostController.navigate("tela_MataMata")
-                        TipoCampeonato.FASE_GRUPOS -> navHostController.navigate("tela_FaseGrupos")
-                        TipoCampeonato.PONTOS_CORRIDOS -> navHostController.navigate("tela_PontosCorridos")
-                        TipoCampeonato.NENHUM -> { }
-                    }
+                    navHostController.navigate("tela_CampCriados")
                 }
             }
         )
