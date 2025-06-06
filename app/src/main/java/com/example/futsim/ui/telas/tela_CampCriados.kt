@@ -58,50 +58,62 @@ fun TelaCampCriados(navHostController: NavHostController) {
         )
     }
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
-        items(campeonatos) { campeonato ->
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp)
-                    .clickable { 
-                        //navHostController.navigate("tela_campeonato/${campeonato.id}")
-                    }
-            ) {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+        Button(
+            onClick = { navHostController.navigate("tela_principal") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 16.dp)
+        ) {
+            Text("Menu Principal")
+        }
+
+        LazyColumn(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            items(campeonatos) { campeonato ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
                 ) {
-                    Column {
-                        Text(
-                            text = campeonato.nome,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                        Text(
-                            text = when (campeonato.tipo) {
-                                TipoCampeonato.MATA_MATA -> "Mata-Mata"
-                                TipoCampeonato.FASE_GRUPOS -> "Fase de Grupos"
-                                TipoCampeonato.PONTOS_CORRIDOS -> "Pontos Corridos"
-                                TipoCampeonato.NENHUM -> "Tipo não definido"
-                            },
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                    Row {
-                        IconButton(onClick = {
-                            campeonatoSelecionado = campeonato
-                            nomeEditado = campeonato.nome
-                            showDialog = true
-                        }) {
-                            Icon(Icons.Filled.Edit, contentDescription = "Editar")
+                    Row(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Column {
+                            Text(
+                                text = campeonato.nome,
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Text(
+                                text = when (campeonato.tipo) {
+                                    TipoCampeonato.MATA_MATA -> "Mata-Mata"
+                                    TipoCampeonato.FASE_GRUPOS -> "Fase de Grupos"
+                                    TipoCampeonato.PONTOS_CORRIDOS -> "Pontos Corridos"
+                                    TipoCampeonato.NENHUM -> "Tipo não definido"
+                                },
+                                style = MaterialTheme.typography.bodyMedium
+                            )
                         }
-                        IconButton(onClick = { 
-                            viewModel.deletarCampeonato(campeonato)
-                            viewModel.carregarCampeonatos()
-                        }) {
-                            Icon(Icons.Filled.Delete, contentDescription = "Excluir")
+                        Row {
+                            IconButton(onClick = {
+                                campeonatoSelecionado = campeonato
+                                nomeEditado = campeonato.nome
+                                showDialog = true
+                            }) {
+                                Icon(Icons.Filled.Edit, contentDescription = "Editar")
+                            }
+                            IconButton(onClick = { 
+                                viewModel.deletarCampeonato(campeonato)
+                                viewModel.carregarCampeonatos()
+                            }) {
+                                Icon(Icons.Filled.Delete, contentDescription = "Excluir")
+                            }
                         }
                     }
                 }
