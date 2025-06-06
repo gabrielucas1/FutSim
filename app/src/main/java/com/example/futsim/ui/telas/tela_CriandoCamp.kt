@@ -29,10 +29,12 @@ import com.example.futsim.model.Campeonato
 import com.example.futsim.ui.componentes.ButtonUniversal
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import com.example.futsim.model.TipoCampeonato
+import androidx.compose.runtime.collectAsState
 
 @Composable
 fun TelaTeste(navHostController: NavHostController) {
     val viewModel = LocalFutSimViewModel.current
+    val campeonatos by viewModel.campeonatos.collectAsState()
 
     var nome by remember { mutableStateOf("") }
     var tipoCampeonato by remember { mutableStateOf(TipoCampeonato.NENHUM) }
@@ -138,23 +140,10 @@ fun TelaTeste(navHostController: NavHostController) {
                 .height(60.dp),
             textColor = Color.White,
             onClick = {
-                val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
-
-                when (tipoCampeonato) {
-                    TipoCampeonato.MATA_MATA -> {
-                        CampeonatoRepository.campeonatosMataMata.add(campeonato)
-                        navHostController.navigate("tela_MataMata")
-                    }
-                    TipoCampeonato.FASE_GRUPOS -> {
-                        navHostController.navigate("tela_FaseGrupos")
-                    }
-                    TipoCampeonato.PONTOS_CORRIDOS -> {
-                        CampeonatoRepository.campeonatosPontosCorridos.add(campeonato)
-                        navHostController.navigate("tela_PontosCorridos")
-                    }
-                    TipoCampeonato.NENHUM -> {
-                        // Não faz nada
-                    }
+                if (nome.isNotBlank() && tipoCampeonato != TipoCampeonato.NENHUM) {
+                    val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
+                    viewModel.inserirCampeonato(campeonato)
+                    navHostController.navigate("tela_CampCriados")
                 }
             }
         )
