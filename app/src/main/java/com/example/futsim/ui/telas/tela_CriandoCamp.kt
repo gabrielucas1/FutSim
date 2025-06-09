@@ -32,7 +32,7 @@ import com.example.futsim.model.TipoCampeonato
 import androidx.compose.runtime.collectAsState
 
 @Composable
-fun TelaTeste(navHostController: NavHostController) {
+fun TelaCriarCamp(navHostController: NavHostController) {
     val viewModel = LocalFutSimViewModel.current
     val campeonatos by viewModel.campeonatos.collectAsState()
 

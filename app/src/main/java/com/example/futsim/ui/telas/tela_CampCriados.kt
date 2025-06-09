@@ -80,6 +80,9 @@ fun TelaCampCriados(navHostController: NavHostController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
+                        .clickable {
+                            navHostController.navigate("tela_PontosCorridos/${campeonato.id}")
+                        }
                 ) {
                     Row(
                         modifier = Modifier.padding(16.dp),

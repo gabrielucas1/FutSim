@@ -21,23 +21,7 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
     private val _partidas = MutableStateFlow<List<Partida>>(emptyList())
     val partidas: StateFlow<List<Partida>> = _partidas
 
-    fun carregarCampeonatos() {
-        viewModelScope.launch {
-            _campeonatos.value = repository.listarCampeonatos()
-        }
-    }
-
-    fun carregarTimes() {
-        viewModelScope.launch {
-            _times.value = repository.listarTimes()
-        }
-    }
-
-    fun carregarPartidasPorCampeonato(campeonatoId: Int) {
-        viewModelScope.launch {
-            _partidas.value = repository.listarPartidasPorCampeonato(campeonatoId)
-        }
-    }
+    //Campeonatos
 
     fun inserirCampeonato(campeonato: Campeonato) {
         viewModelScope.launch {
@@ -45,17 +29,10 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
             carregarCampeonatos()
         }
     }
-
-    fun inserirTime(time: Time) {
+    
+    fun carregarCampeonatos() {
         viewModelScope.launch {
-            repository.inserirTime(time)
-            carregarTimes()
-        }
-    }
-
-    fun inserirPartida(partida: Partida) {
-        viewModelScope.launch {
-            repository.inserirPartida(partida)
+            _campeonatos.value = repository.listarCampeonatos()
         }
     }
 
@@ -70,6 +47,39 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
         viewModelScope.launch {
             repository.deletarCampeonato(campeonato)
             carregarCampeonatos()
+        }
+    }
+
+    //Times
+    fun inserirTime(time: Time) {
+        viewModelScope.launch {
+            repository.inserirTime(time)
+            carregarTimesPorCampeonato(time.campeonatoId)
+        }
+    }
+
+    fun carregarTimes() {
+        viewModelScope.launch {
+            _times.value = repository.listarTimes()
+        }
+    }
+
+    fun carregarTimesPorCampeonato(campeonatoId: Int) {
+        viewModelScope.launch {
+            _times.value = repository.listarTimesPorCampeonato(campeonatoId)
+        }
+    }
+
+    //Partidas
+    fun inserirPartida(partida: Partida) {
+        viewModelScope.launch {
+            repository.inserirPartida(partida)
+        }
+    }
+
+    fun carregarPartidasPorCampeonato(campeonatoId: Int) {
+        viewModelScope.launch {
+            _partidas.value = repository.listarPartidasPorCampeonato(campeonatoId)
         }
     }
 }
