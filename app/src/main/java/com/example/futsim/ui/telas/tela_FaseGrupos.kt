@@ -8,24 +8,32 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.futsim.model.TimeTabela
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
 import com.example.futsim.ui.viewmodel.FutSimViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-data class TimeTabela(
-    val posicao: Int,
-    val nome: String,
-    val pontos: Int,
-    val jogos: Int,
-    val vitorias: Int,
-    val empates: Int,
-    val derrotas: Int,
-    val golsPro: Int,
-    val golsContra: Int
-) {
-    val saldoGols: Int
-        get() = golsPro - golsContra
+@Composable
+fun HeaderTabelaFaseGrupos() {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .padding(horizontal = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text("#", modifier = Modifier.weight(0.5f))
+        Text("Time", modifier = Modifier.weight(2f))
+        Text("Pts", modifier = Modifier.weight(1f))
+        Text("PJ", modifier = Modifier.weight(1f))
+        Text("V", modifier = Modifier.weight(1f))
+        Text("E", modifier = Modifier.weight(1f))
+        Text("D", modifier = Modifier.weight(1f))
+        Text("GP", modifier = Modifier.weight(1f))
+        Text("GC", modifier = Modifier.weight(1f))
+        Text("SG", modifier = Modifier.weight(1f))
+    }
 }
 
 @Composable
@@ -150,7 +158,7 @@ fun TelaFaseDeGrupos(
             }
 
             item {
-                HeaderTabela()
+                HeaderTabelaFaseGrupos()
             }
 
             val timesOrdenados = times.sortedWith(
@@ -164,28 +172,6 @@ fun TelaFaseDeGrupos(
                 Divider()
             }
         }
-    }
-}
-
-@Composable
-fun HeaderTabela() {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .padding(horizontal = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text("#", modifier = Modifier.weight(0.5f))
-        Text("Time", modifier = Modifier.weight(2f))
-        Text("Pts", modifier = Modifier.weight(1f))
-        Text("PJ", modifier = Modifier.weight(1f))
-        Text("V", modifier = Modifier.weight(1f))
-        Text("E", modifier = Modifier.weight(1f))
-        Text("D", modifier = Modifier.weight(1f))
-        Text("GP", modifier = Modifier.weight(1f))
-        Text("GC", modifier = Modifier.weight(1f))
-        Text("SG", modifier = Modifier.weight(1f))
     }
 }
 

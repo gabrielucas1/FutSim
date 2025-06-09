@@ -7,7 +7,7 @@ import com.example.futsim.model.*
 
 @Database(
     entities = [Time::class, Campeonato::class, Partida::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class FutSimDatabase : RoomDatabase() {

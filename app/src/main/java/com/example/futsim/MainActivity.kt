@@ -42,11 +42,16 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController = navController, startDestination = "tela_inicial") {
                         composable("tela_inicial") { TelaInicial(navController) }
                         composable("tela_principal") { TelaPrincipal(navController) }
-                        composable("tela_CriandoCamp") { TelaTeste(navController) }
+                        composable("tela_CriandoCamp") { TelaCriarCamp(navController) }
                         composable("tela_CampCriados") { TelaCampCriados(navController) }
                         composable("tela_MataMata") { TelaMataMata(navController) }
                         composable("tela_FaseGrupos") { TelaFaseDeGrupos(navController) }
-                        composable("tela_PontosCorridos") { TelaPontosCorridos(navController) }
+                        composable("tela_PontosCorridos/{campeonatoId}") { backStackEntry ->
+                            val campeonatoId =
+                                backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
+                                    ?: return@composable
+                            TelaPontosCorridos(navController, campeonatoId)
+                        }
                     }
                 }
             }
