@@ -13,6 +13,7 @@ class FutSimRepository(
     suspend fun inserirTime(time: Time) = timeDao.inserir(time)
     suspend fun listarTimes() = timeDao.listarTodos()
     suspend fun deletarTime(time: Time) = timeDao.deletar(time)
+    suspend fun listarTimesPorCampeonato(campeonatoId: Int) = timeDao.listarPorCampeonato(campeonatoId)
 
     //Campeonatos
     suspend fun inserirCampeonato(campeonato: Campeonato) = campeonatoDao.inserir(campeonato)

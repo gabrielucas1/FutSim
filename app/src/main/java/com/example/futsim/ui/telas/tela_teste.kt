@@ -29,7 +29,7 @@ data class TimeTabela(
 }
 
 @Composable
-fun TelaTeste(navHostController: NavHostController) {
+fun TelaTestePontosCorridos(navHostController: NavHostController) {
     val times = remember {
         mutableStateListOf(
             TimeTabela(1, "Palmeiras", 38, 19, 12, 2, 5, 30, 15),

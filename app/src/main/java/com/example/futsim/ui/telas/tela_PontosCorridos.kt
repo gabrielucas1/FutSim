@@ -1,62 +1,235 @@
 package com.example.futsim.ui.telas
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
-import com.example.futsim.data.CampeonatoRepository
-import com.example.futsim.ui.componentes.ButtonUniversal
-import com.example.futsim.ui.viewmodel.FutSimViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.futsim.model.Time
+import com.example.futsim.model.TimeTabela
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
+import kotlinx.coroutines.launch
 
 @Composable
-fun TelaPontosCorridos(navHostController: NavHostController) {
+fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) {
     val viewModel = LocalFutSimViewModel.current
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text("Campeonatos Pontos Corridos", modifier = Modifier.padding(bottom = 16.dp))
+    val times by viewModel.times.collectAsState()
 
+    var nome by remember { mutableStateOf("") }
+    var vitorias by remember { mutableStateOf("") }
+    var empates by remember { mutableStateOf("") }
+    var derrotas by remember { mutableStateOf("") }
+    var golsPro by remember { mutableStateOf("") }
+    var golsContra by remember { mutableStateOf("") }
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(campeonatoId) {
+        viewModel.carregarTimesPorCampeonato(campeonatoId)
+    }
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { padding ->
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            items(CampeonatoRepository.campeonatosPontosCorridos) { campeonato ->
-                Card(
+            item {
+                Text("Adicionar Novo Time", style = MaterialTheme.typography.titleLarge)
+
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp)
-                        .clickable {
-                            navHostController.navigate("tela_FaseGrupos")
-                        }
-                )  {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text("Nome: ${campeonato.nome}", fontSize = 22.sp)
-                        Text("Tipo: ${campeonato.tipo.name}", fontSize = 18.sp)
-                    }
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    OutlinedTextField(
+                        value = nome,
+                        onValueChange = { nome = it },
+                        label = { Text("Nome do Time") },
+                        modifier = Modifier.weight(1f)
+                    )
                 }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    OutlinedTextField(
+                        value = vitorias,
+                        onValueChange = { vitorias = it },
+                        label = { Text("Vitórias") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.weight(1f)
+                    )
+                    OutlinedTextField(
+                        value = empates,
+                        onValueChange = { empates = it },
+                        label = { Text("Empates") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.weight(1f)
+                    )
+                    OutlinedTextField(
+                        value = derrotas,
+                        onValueChange = { derrotas = it },
+                        label = { Text("Derrotas") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    OutlinedTextField(
+                        value = golsPro,
+                        onValueChange = { golsPro = it },
+                        label = { Text("Gols Pró") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.weight(1f)
+                    )
+                    OutlinedTextField(
+                        value = golsContra,
+                        onValueChange = { golsContra = it },
+                        label = { Text("Gols Contra") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                val coroutineScope = rememberCoroutineScope()
+
+                Button(onClick = {
+                    val camposValidos = nome.isNotBlank()
+                            && vitorias.toIntOrNull() != null
+                            && empates.toIntOrNull() != null
+                            && derrotas.toIntOrNull() != null
+                            && golsPro.toIntOrNull() != null
+                            && golsContra.toIntOrNull() != null
+
+                    if (camposValidos) {
+                        val time = Time(
+                            nome = nome,
+                            campeonatoId = campeonatoId,
+                            vitorias = vitorias.toInt(),
+                            empates = empates.toInt(),
+                            derrotas = derrotas.toInt(),
+                            golsPro = golsPro.toInt(),
+                            golsContra = golsContra.toInt()
+                        )
+                        viewModel.inserirTime(time)
+
+                        nome = ""
+                        vitorias = ""
+                        empates = ""
+                        derrotas = ""
+                        golsPro = ""
+                        golsContra = ""
+
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("Time adicionado com sucesso!")
+                        }
+                    } else {
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("Preencha todos os campos corretamente.")
+                        }
+                    }
+                }) {
+                    Text("Salvar Time")
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+            }
+
+            item {
+                HeaderTabelaPontosCorridos()
+            }
+
+            val timesOrdenados = times
+                .map {
+                    TimeTabela(
+                        posicao = 0,
+                        nome = it.nome,
+                        pontos = it.vitorias * 3 + it.empates,
+                        jogos = it.vitorias + it.empates + it.derrotas,
+                        vitorias = it.vitorias,
+                        empates = it.empates,
+                        derrotas = it.derrotas,
+                        golsPro = it.golsPro,
+                        golsContra = it.golsContra
+                    )
+                }
+                .sortedWith(
+                    compareByDescending<TimeTabela> { it.pontos }
+                        .thenByDescending { it.saldoGols }
+                        .thenByDescending { it.golsPro }
+                )
+                .mapIndexed { index, time -> time.copy(posicao = index + 1) }
+
+            items(timesOrdenados) { time ->
+                LinhaTabelaPontosCorridos(time)
+                Divider()
             }
         }
+    }
+}
 
-        ButtonUniversal(
-            text = "Tela Principal",
-            onClick = { navHostController.navigate("tela_Principal") },
-            modifier = Modifier
-                .padding(vertical = 16.dp)
-                .align(Alignment.CenterHorizontally)
-        )
+@Composable
+fun HeaderTabelaPontosCorridos() {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .padding(horizontal = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text("#", modifier = Modifier.weight(0.5f))
+        Text("Time", modifier = Modifier.weight(2f))
+        Text("Pts", modifier = Modifier.weight(1f))
+        Text("PJ", modifier = Modifier.weight(1f))
+        Text("V", modifier = Modifier.weight(1f))
+        Text("E", modifier = Modifier.weight(1f))
+        Text("D", modifier = Modifier.weight(1f))
+        Text("GP", modifier = Modifier.weight(1f))
+        Text("GC", modifier = Modifier.weight(1f))
+        Text("SG", modifier = Modifier.weight(1f))
+    }
+}
+
+@Composable
+fun LinhaTabelaPontosCorridos(time: TimeTabela) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(vertical = 2.dp, horizontal = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text("${time.posicao}", modifier = Modifier.weight(0.5f))
+        Text(time.nome, modifier = Modifier.weight(2f))
+        Text("${time.pontos}", modifier = Modifier.weight(1f))
+        Text("${time.jogos}", modifier = Modifier.weight(1f))
+        Text("${time.vitorias}", modifier = Modifier.weight(1f))
+        Text("${time.empates}", modifier = Modifier.weight(1f))
+        Text("${time.derrotas}", modifier = Modifier.weight(1f))
+        Text("${time.golsPro}", modifier = Modifier.weight(1f))
+        Text("${time.golsContra}", modifier = Modifier.weight(1f))
+        Text("${time.saldoGols}", modifier = Modifier.weight(1f))
     }
 }
