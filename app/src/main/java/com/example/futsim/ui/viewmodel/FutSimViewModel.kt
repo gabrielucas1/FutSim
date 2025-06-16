@@ -82,4 +82,6 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
             _partidas.value = repository.listarPartidasPorCampeonato(campeonatoId)
         }
     }
+
+
 }

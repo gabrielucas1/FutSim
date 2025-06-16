@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
@@ -58,20 +59,6 @@ fun TelaCampCriados(navHostController: NavHostController) {
         )
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Button(
-            onClick = { navHostController.navigate("tela_principal") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
-        ) {
-            Text("Menu Principal")
-        }
-
         LazyColumn(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -103,7 +90,11 @@ fun TelaCampCriados(navHostController: NavHostController) {
                                 style = MaterialTheme.typography.bodyMedium
                             )
                         }
-                        Row {
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(end = 8.dp),
+                            horizontalArrangement = Arrangement.End
+                        ) {
                             IconButton(onClick = {
                                 campeonatoSelecionado = campeonato
                                 nomeEditado = campeonato.nome
@@ -111,6 +102,7 @@ fun TelaCampCriados(navHostController: NavHostController) {
                             }) {
                                 Icon(Icons.Filled.Edit, contentDescription = "Editar")
                             }
+                            Spacer(modifier = Modifier.width(8.dp))
                             IconButton(onClick = { 
                                 viewModel.deletarCampeonato(campeonato)
                                 viewModel.carregarCampeonatos()
@@ -123,4 +115,5 @@ fun TelaCampCriados(navHostController: NavHostController) {
             }
         }
     }
-}
+
+

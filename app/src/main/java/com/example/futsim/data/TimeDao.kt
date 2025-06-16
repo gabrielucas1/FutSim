@@ -10,4 +10,5 @@ interface TimeDao {
     @Delete suspend fun deletar(time: Time)
     @Query("SELECT * FROM times WHERE campeonatoId = :campeonatoId")
     suspend fun listarPorCampeonato(campeonatoId: Int): List<Time>
+
 }

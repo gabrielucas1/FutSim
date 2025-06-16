@@ -36,14 +36,5 @@ fun TelaPrincipal(navHostController: NavHostController) {
             fontSize = 28.sp,
         )
 
-        ButtonUniversal(
-            text = stringResource(R.string.tela_inicial),
-            onClick = { navHostController.navigate("tela_inicial") },
-            fontSize = 22.sp,
-            modifier = Modifier
-                .padding(bottom = 50.dp)
-                .width(135.dp)
-                .height(60.dp)
-        )
     }
 }
