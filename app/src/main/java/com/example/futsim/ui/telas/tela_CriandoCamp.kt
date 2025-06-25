@@ -1,151 +1,133 @@
 package com.example.futsim.ui.telas
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavHostController
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.futsim.data.CampeonatoRepository
+import androidx.navigation.NavHostController
 import com.example.futsim.model.Campeonato
+import com.example.futsim.model.TipoCampeonato
 import com.example.futsim.ui.componentes.ButtonUniversal
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
-import com.example.futsim.model.TipoCampeonato
-import androidx.compose.runtime.collectAsState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TelaCriarCamp(navHostController: NavHostController) {
     val viewModel = LocalFutSimViewModel.current
-    val campeonatos by viewModel.campeonatos.collectAsState()
 
     var nome by remember { mutableStateOf("") }
     var tipoCampeonato by remember { mutableStateOf(TipoCampeonato.NENHUM) }
+    var nomeError by remember { mutableStateOf(false) }
+    var tipoError by remember { mutableStateOf(false) }
 
-    // Essa coluna engloba toda a estrutura do projeto
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // onde fica o nome do campeonato
-        TextField(
-            value = nome,
-            onValueChange = { nome = it },
-            placeholder = { Text(text = "Insira o nome do campeonato") },
-            label = { Text("Nome Campeonato") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .padding(top = 120.dp),
-        )
-
-        // Essa coluna engloba os checkboxes e fica centralizada com os itens um abaixo do outro
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text("Criar Campeonato", fontWeight = FontWeight.Bold, fontSize = 22.sp) }
+            )
+        },
+        bottomBar = {
+            Button(
+                onClick = {
+                    nomeError = nome.isBlank()
+                    tipoError = tipoCampeonato == TipoCampeonato.NENHUM
+                    if (!nomeError && !tipoError) {
+                        val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
+                        viewModel.inserirCampeonato(campeonato)
+                        navHostController.navigate("tela_CampCriados")
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(56.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+            ) {
+                Text("Criar Campeonato", fontSize = 18.sp, color = Color.White)
+            }
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
-                .padding(top = 250.dp)
-                .fillMaxWidth(),
-            verticalArrangement = Arrangement.Center,
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(horizontal = 24.dp),
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            // Checkbox Mata-Mata
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(bottom = 20.dp)
-            ) {
-                Checkbox(
-                    checked = tipoCampeonato == TipoCampeonato.MATA_MATA,
-                    onCheckedChange = {
-                        tipoCampeonato = if (it) TipoCampeonato.MATA_MATA else TipoCampeonato.NENHUM
-                    },
-                    modifier = Modifier
-                        .padding(end = 20.dp)
-                        .scale(2f),
+            Spacer(Modifier.height(32.dp))
+            OutlinedTextField(
+                value = nome,
+                onValueChange = {
+                    nome = it
+                    nomeError = false
+                },
+                label = { Text("Nome do Campeonato") },
+                isError = nomeError,
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+            if (nomeError) {
+                Text(
+                    text = "Informe o nome do campeonato",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp,
+                    modifier = Modifier.align(Alignment.Start)
                 )
-                Text(text = "Mata-Mata", fontSize = 40.sp)
             }
 
-            // Checkbox Fase de Grupos
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(bottom = 30.dp)
-            ) {
-                Checkbox(
-                    checked = tipoCampeonato == TipoCampeonato.FASE_GRUPOS,
-                    onCheckedChange = {
-                        tipoCampeonato = if (it) TipoCampeonato.FASE_GRUPOS else TipoCampeonato.NENHUM
-                    },
+            Spacer(Modifier.height(32.dp))
+            Text(
+                text = "Tipo de Campeonato",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 18.sp,
+                modifier = Modifier.align(Alignment.Start)
+            )
+
+            val tipos = listOf(
+                TipoCampeonato.MATA_MATA to "Mata-Mata",
+                TipoCampeonato.FASE_GRUPOS to "Fase de Grupos",
+                TipoCampeonato.PONTOS_CORRIDOS to "Pontos Corridos"
+            )
+
+            tipos.forEach { (tipo, label) ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .padding(end = 20.dp)
-                        .scale(2f),
-                )
-                Text(text = "Fase de Grupos", fontSize = 40.sp)
-            }
-
-            // Checkbox Pontos Corridos
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Checkbox(
-                    checked = tipoCampeonato == TipoCampeonato.PONTOS_CORRIDOS,
-                    onCheckedChange = {
-                        tipoCampeonato = if (it) TipoCampeonato.PONTOS_CORRIDOS else TipoCampeonato.NENHUM
-                    },
-                    modifier = Modifier
-                        .padding(end = 20.dp)
-                        .scale(2f),
-                )
-                Text(text = "Pontos-Corridos", fontSize = 40.sp)
-            }
-        }
-
-        Column {
-            when (tipoCampeonato) {
-                TipoCampeonato.MATA_MATA -> Text(text = "Mata Mata selecionada")
-                TipoCampeonato.FASE_GRUPOS -> Text(text = "Fase de Grupos selecionada")
-                TipoCampeonato.PONTOS_CORRIDOS -> Text(text = "Pontos corridos selecionado")
-                TipoCampeonato.NENHUM -> Text("")
-            }
-        }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        ButtonUniversal(
-            text = "CRIAR",
-            fontSize = 22.sp,
-            modifier = Modifier
-                .padding(bottom = 50.dp)
-                .width(135.dp)
-                .height(60.dp),
-            textColor = Color.White,
-            onClick = {
-                if (nome.isNotBlank() && tipoCampeonato != TipoCampeonato.NENHUM) {
-                    val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato)
-                    viewModel.inserirCampeonato(campeonato)
-                    navHostController.navigate("tela_CampCriados")
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
+                        .height(40.dp)
+                ) {
+                    RadioButton(
+                        selected = tipoCampeonato == tipo,
+                        onClick = {
+                            tipoCampeonato = tipo
+                            tipoError = false
+                        },
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+                    Text(
+                        text = label,
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
                 }
             }
-        )
+            if (tipoError) {
+                Text(
+                    text = "Selecione um tipo de campeonato",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp,
+                    modifier = Modifier.align(Alignment.Start)
+                )
+            }
+        }
     }
 }
