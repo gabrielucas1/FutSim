@@ -70,6 +70,20 @@ class FutSimViewModel(private val repository: FutSimRepository) : ViewModel() {
         }
     }
 
+    fun atualizarTime(time: Time) {
+        viewModelScope.launch {
+            repository.atualizarTime(time)
+            carregarTimesPorCampeonato(time.campeonatoId)
+        }
+    }
+
+    fun deletarTime(time: Time) {
+        viewModelScope.launch {
+            repository.deletarTime(time)
+            carregarTimesPorCampeonato(time.campeonatoId)
+        }
+    }
+
     //Partidas
     fun inserirPartida(partida: Partida) {
         viewModelScope.launch {
