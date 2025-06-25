@@ -1,9 +1,11 @@
 package com.example.futsim.ui.telas
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -17,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -302,7 +305,18 @@ fun LinhaTabelaPontosCorridos(time: TimeTabela, modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text("${time.posicao}", modifier = Modifier.weight(0.5f), fontSize = 14.sp)
-        Text(time.nome, modifier = Modifier.weight(2f), fontSize = 14.sp)
+        Box(
+            modifier = Modifier
+                .weight(2f)
+                .horizontalScroll(rememberScrollState())
+        ) {
+            Text(
+                text = time.nome,
+                fontSize = 14.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Visible
+            )
+        }
         Text("${time.pontos}", modifier = Modifier.weight(1f), fontSize = 14.sp)
         Text("${time.jogos}", modifier = Modifier.weight(1f), fontSize = 14.sp)
         Text("${time.vitorias}", modifier = Modifier.weight(1f), fontSize = 14.sp)
