@@ -60,6 +60,23 @@ fun TelaInicial(navHostController: NavHostController) {
             )
         }
 
+        InfoSection(
+            title = "Monte seus próprios campeonatos de futebol!",
+            description = "Simule mata-mata, pontos corridos e acompanhe tudo direto do celular. Fácil, rápido e divertido!"
+        )
+        // Imagem adicionada para a apresentção
+        Image(
+            painter = painterResource(id = R.drawable.chuteirabolatrofeu),
+            contentDescription = "Imagem de apresentação",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .padding(vertical = 16.dp),
+            alignment = Alignment.Center
+        )
+        
+        Spacer(modifier = Modifier.height(20.dp))
+
         // Seção 2: Campeonatos Mata-Mata
         InfoSection(
             title = "Campeonatos Mata-Mata",
@@ -67,11 +84,11 @@ fun TelaInicial(navHostController: NavHostController) {
         )
         // Imagem adicionada para a seção de mata mata
         Image(
-            painter = painterResource(id = R.drawable.imgmatamata), // Certifique-se de que o nome do drawable está correto
+            painter = painterResource(id = R.drawable.imgmatamata),
             contentDescription = "Imagem de mata mata",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .height(200.dp)
                 .padding(vertical = 16.dp),
             alignment = Alignment.Center
         )
@@ -83,34 +100,33 @@ fun TelaInicial(navHostController: NavHostController) {
         )
         // Imagem adicionada para a seção de Pontos Corridos
         Image(
-            painter = painterResource(id = R.drawable.pontoscorridos), // Certifique-se de que o nome do drawable está correto
+            painter = painterResource(id = R.drawable.pontoscorridos),
             contentDescription = "Imagem de Pontos Corridos",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .height(200.dp)
                 .padding(vertical = 16.dp),
             alignment = Alignment.Center
         )
 
+        Spacer(modifier = Modifier.height(50.dp))
 
-        // Seção 4: Campeonatos Fase de Grupos
-        InfoSection(
-            title = "Campeonatos com Fase de Grupos",
-            description = "Organize competições com uma fase inicial de grupos, onde os times jogam entre si para avançar para as etapas eliminatórias. Ideal para simular grandes torneios internacionais!"
-        )
-        // Imagem adicionada para a seção de Fase de Grupos
-        Image(
-            painter = painterResource(id = R.drawable.imgfasegrupos), // Certifique-se de que o nome do drawable está correto
-            contentDescription = "Imagem de Fase de Grupos",
+        // Rodapé (Footer)
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .background(MaterialTheme.colorScheme.primary)
                 .padding(vertical = 16.dp),
-            alignment = Alignment.Center
-        )
-
-
-        Spacer(modifier = Modifier.height(50.dp)) // Espaço extra no final para melhor rolagem
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "FutSim © 2025 - Todos os direitos reservados",
+                color = MaterialTheme.colorScheme.onPrimary,
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 
