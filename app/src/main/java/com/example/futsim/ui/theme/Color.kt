@@ -8,7 +8,7 @@ val DarkGreen = Color(0xFF388E3C)
 val AccentColor = Color(0xFFFFC107)
 
 // --- NOVAS CORES PARA O TEMA ESCURO ---
-val DarkThemeBackground = Color(0xFF121212) // Um preto quase puro para o fundo
+val DarkThemeBackground = Color(0xFF000000) // Um preto quase puro para o fundo
 val DarkThemeSurface = Color(0xFF1E1E1E)   // Um cinza escuro para cards e superfícies
 val DarkThemeTextPrimary = Color(0xFFE0E0E0)   // Um branco suave para textos principais
 val DarkThemeTextSecondary = Color(0xFFB0B0B0)  // Um cinza claro para textos de apoio

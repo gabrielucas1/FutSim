@@ -65,18 +65,50 @@ fun TelaInicial(navHostController: NavHostController) {
             title = "Campeonatos Mata-Mata",
             description = "Simule torneios eliminatórios, como copas e ligas com fases de playoff. Acompanhe o chaveamento, resultados e o avanço dos times até a grande final!"
         )
+        // Imagem adicionada para a seção de mata mata
+        Image(
+            painter = painterResource(id = R.drawable.imgmatamata), // Certifique-se de que o nome do drawable está correto
+            contentDescription = "Imagem de mata mata",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .padding(vertical = 16.dp),
+            alignment = Alignment.Center
+        )
 
         // Seção 3: Campeonatos Pontos Corridos
         InfoSection(
             title = "Campeonatos de Pontos Corridos",
             description = "Crie ligas onde todos os times se enfrentam, acumulando pontos por vitória e empate. Gerencie a tabela de classificação, gols marcados e sofridos, e o saldo de gols para coroar o campeão ao final da temporada."
         )
+        // Imagem adicionada para a seção de Pontos Corridos
+        Image(
+            painter = painterResource(id = R.drawable.pontoscorridos), // Certifique-se de que o nome do drawable está correto
+            contentDescription = "Imagem de Pontos Corridos",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .padding(vertical = 16.dp),
+            alignment = Alignment.Center
+        )
+
 
         // Seção 4: Campeonatos Fase de Grupos
         InfoSection(
             title = "Campeonatos com Fase de Grupos",
             description = "Organize competições com uma fase inicial de grupos, onde os times jogam entre si para avançar para as etapas eliminatórias. Ideal para simular grandes torneios internacionais!"
         )
+        // Imagem adicionada para a seção de Fase de Grupos
+        Image(
+            painter = painterResource(id = R.drawable.imgfasegrupos), // Certifique-se de que o nome do drawable está correto
+            contentDescription = "Imagem de Fase de Grupos",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp) // Ajuste a altura conforme necessário para um tamanho agradável no celular
+                .padding(vertical = 16.dp),
+            alignment = Alignment.Center
+        )
+
 
         Spacer(modifier = Modifier.height(50.dp)) // Espaço extra no final para melhor rolagem
     }
