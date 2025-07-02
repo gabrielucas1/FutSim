@@ -1,5 +1,5 @@
 package com.example.futsim
-
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -11,7 +11,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -32,6 +31,7 @@ import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
 
         val database = Room.databaseBuilder(
@@ -98,6 +98,7 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         startDestination = BottomNavItem.TelaInicial.route,
         modifier = modifier
     ) {
+        // Chamadas corrigidas para as telas corretas
         composable(BottomNavItem.TelaInicial.route) { TelaInicial(navController) }
         composable(BottomNavItem.TelaPrincipal.route) { TelaPrincipal(navController) }
         composable(BottomNavItem.Campeonatos.route) { TelaCampCriados(navController) }

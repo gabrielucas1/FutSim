@@ -1,40 +1,42 @@
 package com.example.futsim.ui.telas
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth // Import corrigido
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.example.futsim.ui.componentes.ButtonUniversal
-import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.futsim.R
+import com.example.futsim.ui.componentes.ButtonUniversal
 
 @Composable
-fun TelaPrincipal(navHostController: NavHostController) {
-    val viewModel = LocalFutSimViewModel.current
-    val campeonatos = viewModel.campeonatos.collectAsState().value
-
+fun TelaPrincipal(navHostController: NavHostController) { // Nome da função corrigido
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ButtonUniversal(
             text = stringResource(R.string.criar_campeonato),
             onClick = { navHostController.navigate("tela_CriandoCamp") },
-            modifier = Modifier.padding(top = 10.dp, bottom = 50.dp).width(380.dp).height(45.dp),
-            fontSize = 30.sp,
+            modifier = Modifier.fillMaxWidth()
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         ButtonUniversal(
             text = stringResource(R.string.campeonatos_criados),
             onClick = { navHostController.navigate("tela_CampCriados") },
-            modifier = Modifier.padding(top = 2.dp, bottom = 80.dp).width(380.dp).height(45.dp),
-            fontSize = 28.sp,
+            modifier = Modifier.fillMaxWidth()
         )
-
     }
 }

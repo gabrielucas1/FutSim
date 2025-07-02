@@ -16,8 +16,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle // Import corrigido
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -28,6 +29,8 @@ import com.example.futsim.model.TimeTabela
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
 
+// ... (o resto do arquivo continua igual até o Scaffold)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) {
@@ -36,12 +39,10 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    // Estados para modais
     var showAddDialog by remember { mutableStateOf(false) }
     var showEditDialog by remember { mutableStateOf(false) }
     var editingTime by remember { mutableStateOf<Time?>(null) }
 
-    // Campos do formulário
     var nome by remember { mutableStateOf("") }
     var vitorias by remember { mutableStateOf("") }
     var empates by remember { mutableStateOf("") }
@@ -49,12 +50,10 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
     var golsPro by remember { mutableStateOf("") }
     var golsContra by remember { mutableStateOf("") }
 
-    // Carregar times ao abrir tela
     LaunchedEffect(campeonatoId) {
         viewModel.carregarTimesPorCampeonato(campeonatoId)
     }
 
-    // Função para limpar campos
     fun limparCampos() {
         nome = ""
         vitorias = ""
@@ -64,7 +63,6 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
         golsContra = ""
     }
 
-    // Modal de adicionar time
     if (showAddDialog) {
         AlertDialog(
             onDismissRequest = { showAddDialog = false },
@@ -81,12 +79,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
             },
             confirmButton = {
                 Button(onClick = {
-                    val camposValidos = nome.isNotBlank()
-                            && vitorias.toIntOrNull() != null
-                            && empates.toIntOrNull() != null
-                            && derrotas.toIntOrNull() != null
-                            && golsPro.toIntOrNull() != null
-                            && golsContra.toIntOrNull() != null
+                    val camposValidos = nome.isNotBlank() && vitorias.toIntOrNull() != null && empates.toIntOrNull() != null && derrotas.toIntOrNull() != null && golsPro.toIntOrNull() != null && golsContra.toIntOrNull() != null
                     if (camposValidos) {
                         val time = Time(
                             nome = nome,
@@ -115,7 +108,6 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
         )
     }
 
-    // Modal de editar/excluir time
     if (showEditDialog && editingTime != null) {
         AlertDialog(
             onDismissRequest = { showEditDialog = false },
@@ -132,12 +124,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
             },
             confirmButton = {
                 Button(onClick = {
-                    val camposValidos = nome.isNotBlank()
-                            && vitorias.toIntOrNull() != null
-                            && empates.toIntOrNull() != null
-                            && derrotas.toIntOrNull() != null
-                            && golsPro.toIntOrNull() != null
-                            && golsContra.toIntOrNull() != null
+                    val camposValidos = nome.isNotBlank() && vitorias.toIntOrNull() != null && empates.toIntOrNull() != null && derrotas.toIntOrNull() != null && golsPro.toIntOrNull() != null && golsContra.toIntOrNull() != null
                     if (camposValidos && editingTime != null) {
                         val timeAtualizado = editingTime!!.copy(
                             nome = nome,
@@ -275,6 +262,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
     }
 }
 
+
 @Composable
 fun HeaderTabelaPontosCorridos() {
     Row(
@@ -284,29 +272,31 @@ fun HeaderTabelaPontosCorridos() {
             .padding(horizontal = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("#", modifier = Modifier.weight(0.5f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("Time", modifier = Modifier.weight(2f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("Pts", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("PJ", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("V", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("E", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("D", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("GP", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("GC", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-        Text("SG", modifier = Modifier.weight(1f), fontSize = 14.sp, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+        val headerStyle = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold)
+        Text("#", modifier = Modifier.weight(0.5f), style = headerStyle)
+        Text("Time", modifier = Modifier.weight(2f), style = headerStyle)
+        Text("Pts", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("PJ", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("V", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("E", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("D", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("GP", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("GC", modifier = Modifier.weight(1f), style = headerStyle)
+        Text("SG", modifier = Modifier.weight(1f), style = headerStyle)
     }
 }
 
 @Composable
 fun LinhaTabelaPontosCorridos(time: TimeTabela, modifier: Modifier = Modifier) {
     Row(
-        modifier = modifier,
+        modifier = modifier.height(IntrinsicSize.Min), // Garante que a linha tenha uma altura consistente
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("${time.posicao}", modifier = Modifier.weight(0.5f), fontSize = 14.sp)
+        val cellModifier = Modifier.align(Alignment.CenterVertically)
+        Text("${time.posicao}", modifier = cellModifier.weight(0.5f), fontSize = 14.sp)
         Box(
-            modifier = Modifier
+            modifier = cellModifier
                 .weight(2f)
                 .horizontalScroll(rememberScrollState())
         ) {
@@ -317,13 +307,13 @@ fun LinhaTabelaPontosCorridos(time: TimeTabela, modifier: Modifier = Modifier) {
                 overflow = TextOverflow.Visible
             )
         }
-        Text("${time.pontos}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.jogos}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.vitorias}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.empates}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.derrotas}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.golsPro}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.golsContra}", modifier = Modifier.weight(1f), fontSize = 14.sp)
-        Text("${time.saldoGols}", modifier = Modifier.weight(1f), fontSize = 14.sp)
+        Text("${time.pontos}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.jogos}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.vitorias}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.empates}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.derrotas}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.golsPro}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.golsContra}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
+        Text("${time.saldoGols}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
     }
 }
