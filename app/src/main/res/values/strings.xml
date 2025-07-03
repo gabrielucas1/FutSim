@@ -51,4 +51,31 @@
     <string name="info_section_desc_pontos_corridos">Crie ligas onde todos os times se enfrentam, acumulando pontos por vitória e empate. Gerencie a tabela de classificação, gols marcados e sofridos, e o saldo de gols para coroar o campeão ao final da temporada.</string>
     <string name="content_desc_pontos_corridos">Imagem de Pontos Corridos</string>
     <string name="footer_text">FutSim © 2025 - Todos os direitos reservados</string>
+
+    <!-- Novas strings para tela_MataMata.kt -->
+    <string name="mata_mata_titulo">Mata-Mata</string>
+    <string name="resetar_tabela_btn">Resetar Tabela</string>
+    <string name="limpar_tudo_btn">Limpar Tudo</string>
+    <string name="configurar_torneio_titulo">Configurar Torneio</string>
+    <string name="fase_inicial_label">Fase Inicial</string>
+    <string name="time_label">Time %1$d</string> <!-- %1$d para formatar com o número do time -->
+    <string name="iniciar_mata_mata_btn">Iniciar Mata-Mata</string>
+    <string name="finalizar_partida_btn">Finalizar Partida</string>
+    <string name="gols_label">Gols</string>
+    <string name="campeao_content_desc">Campeão</string>
+    <string name="vencedor_content_desc">Vencedor</string>
+    <string name="trofeu_campeao_content_desc">Troféu de Campeão</string>
+    <string name="o_grande_campeao_e">O GRANDE CAMPEÃO É:</string>
+    <string name="resetar_torneio_dialog_titulo">Resetar Torneio?</string>
+    <string name="resetar_torneio_dialog_texto">Isso irá apagar os confrontos e resultados, voltando para a tela de configuração inicial dos times.</string>
+    <string name="limpar_tudo_dialog_titulo">Limpar Tudo?</string>
+    <string name="limpar_tudo_dialog_texto">Isso irá apagar todos os dados deste torneio. Esta ação não pode ser desfeita.</string>
+    <string name="confronto_x">X</string>
+    <string name="confronto_separador_gols">-</string>
+    <string name="oitavas_final_label">Oitavas de Final</string>
+    <string name="quartas_final_label">Quartas de Final</string>
+    <string name="semifinais_label">Semifinais</string>
+    <string name="final_label">Final</string>
+    <string name="avancar_para_fase">Avançar para %1$s</string>
+    <string name="resetar">Resetar</string>
 </resources>

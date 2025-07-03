@@ -51,4 +51,31 @@
     <string name="info_section_desc_pontos_corridos">Create leagues where all teams play each other, accumulating points for wins and draws. Manage the standings, goals scored and conceded, and goal difference to crown the champion at the end of the season.</string>
     <string name="content_desc_pontos_corridos">Round Robin image</string>
     <string name="footer_text">FutSim © 2025 - All rights reserved</string>
+
+    <!-- New strings for tela_MataMata.kt -->
+    <string name="mata_mata_titulo">Knockout</string>
+    <string name="resetar_tabela_btn">Reset Table</string>
+    <string name="limpar_tudo_btn">Clear All</string>
+    <string name="configurar_torneio_titulo">Configure Tournament</string>
+    <string name="fase_inicial_label">Initial Phase</string>
+    <string name="time_label">Team %1$d</string>
+    <string name="iniciar_mata_mata_btn">Start Knockout</string>
+    <string name="finalizar_partida_btn">Finalize Match</string>
+    <string name="gols_label">Goals</string>
+    <string name="campeao_content_desc">Champion</string>
+    <string name="vencedor_content_desc">Winner</string>
+    <string name="trofeu_campeao_content_desc">Champion Trophy</string>
+    <string name="o_grande_campeao_e">THE GRAND CHAMPION IS:</string>
+    <string name="resetar_torneio_dialog_titulo">Reset Tournament?</string>
+    <string name="resetar_torneio_dialog_texto">This will clear all confrontations and results, returning to the initial team configuration screen.</string>
+    <string name="limpar_tudo_dialog_titulo">Clear All?</string>
+    <string name="limpar_tudo_dialog_texto">This will clear all data for this tournament. This action cannot be undone.</string>
+    <string name="confronto_x">X</string>
+    <string name="confronto_separador_gols">-</string>
+    <string name="oitavas_final_label">Round of 16</string>
+    <string name="quartas_final_label">Quarterfinals</string>
+    <string name="semifinais_label">Semifinals</string>
+    <string name="final_label">Final</string>
+    <string name="avancar_para_fase">Advance to %1$s</string>
+    <string name="resetar">Reset</string>
 </resources>
