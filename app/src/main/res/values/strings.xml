@@ -10,4 +10,8 @@
     <string name="cancelar">Cancelar</string>
     <string name="editar">Editar</string>
     <string name="excluir">Excluir</string>
+    <string name="tipo_mata_mata">Mata-Mata</string>
+    <string name="tipo_fase_grupos">Fase de Grupos</string>
+    <string name="tipo_pontos_corridos">Pontos Corridos</string>
+    <string name="tipo_nao_definido">Tipo não definido</string>
 </resources>

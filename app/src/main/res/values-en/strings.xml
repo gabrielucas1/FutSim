@@ -10,4 +10,8 @@
     <string name="cancelar">Cancel</string>
     <string name="editar">Edit</string>
     <string name="excluir">Delete</string>
+    <string name="tipo_mata_mata">Knockout</string>
+    <string name="tipo_fase_grupos">Group Stage</string>
+    <string name="tipo_pontos_corridos">Round Robin</string>
+    <string name="tipo_nao_definido">Type not defined</string>
 </resources>
