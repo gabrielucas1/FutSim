@@ -22,7 +22,6 @@ import androidx.navigation.NavHostController
 import com.example.futsim.model.Campeonato
 import com.example.futsim.model.TipoCampeonato
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
