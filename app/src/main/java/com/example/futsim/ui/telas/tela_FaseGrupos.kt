@@ -9,6 +9,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
@@ -16,6 +17,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.ui.text.font.FontWeight
 import com.example.futsim.model.TimeTabela
+import com.example.futsim.ui.viewmodel.FutSimViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.futsim.R
 
 @Composable
 fun HeaderTabelaFaseGrupos() {
@@ -26,16 +30,16 @@ fun HeaderTabelaFaseGrupos() {
             .padding(horizontal = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("#", modifier = Modifier.weight(0.5f))
-        Text("Time", modifier = Modifier.weight(2f))
-        Text("Pts", modifier = Modifier.weight(1f))
-        Text("PJ", modifier = Modifier.weight(1f))
-        Text("V", modifier = Modifier.weight(1f))
-        Text("E", modifier = Modifier.weight(1f))
-        Text("D", modifier = Modifier.weight(1f))
-        Text("GP", modifier = Modifier.weight(1f))
-        Text("GC", modifier = Modifier.weight(1f))
-        Text("SG", modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.tabela_posicao_abreviado), modifier = Modifier.weight(0.5f))
+        Text(stringResource(R.string.tabela_time), modifier = Modifier.weight(2f))
+        Text(stringResource(R.string.tabela_pontos_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.tabela_jogos_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.vitorias_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.empates_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.derrotas_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.gols_pro_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.gols_contra_abreviado), modifier = Modifier.weight(1f))
+        Text(stringResource(R.string.tabela_saldo_gols_abreviado), modifier = Modifier.weight(1f))
     }
 }
 
@@ -84,7 +88,7 @@ fun TelaFaseDeGrupos(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                Text("Adicionar Novo Time", style = MaterialTheme.typography.titleLarge)
+                Text(stringResource(R.string.adicionar_novo_time), style = MaterialTheme.typography.titleLarge)
 
                 Row(
                     modifier = Modifier
@@ -95,20 +99,21 @@ fun TelaFaseDeGrupos(navController: NavHostController) {
                     OutlinedTextField(
                         value = nome,
                         onValueChange = { nome = it },
-                        label = { Text("Nome do Time") },
+                        label = { Text(stringResource(R.string.nome_do_time)) },
                         modifier = Modifier.weight(1f)
                     )
                 }
 
+
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text("Vitórias") },modifier = Modifier.weight(1f))
-                    OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text("Empates") },modifier = Modifier.weight(1f))
-                    OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text("Derrotas") },modifier = Modifier.weight(1f))
+                    OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text(stringResource(R.string.vitorias_abreviado)) },modifier = Modifier.weight(1f))
+                    OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text(stringResource(R.string.empates_abreviado)) },modifier = Modifier.weight(1f))
+                    OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text(stringResource(R.string.derrotas_abreviado)) },modifier = Modifier.weight(1f))
                 }
 
                 Row(
@@ -117,8 +122,8 @@ fun TelaFaseDeGrupos(navController: NavHostController) {
                         .padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text("Gols Pró") },modifier = Modifier.weight(1f))
-                    OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text("Gols Contra") },modifier = Modifier.weight(1f))
+                    OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text(stringResource(R.string.gols_pro_abreviado)) },modifier = Modifier.weight(1f))
+                    OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text(stringResource(R.string.gols_contra_abreviado)) },modifier = Modifier.weight(1f))
                 }
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -164,7 +169,7 @@ fun TelaFaseDeGrupos(navController: NavHostController) {
                     }
                 })
                 {
-                    Text("Salvar Time")
+                    Text(stringResource(R.string.salvar_time))
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))

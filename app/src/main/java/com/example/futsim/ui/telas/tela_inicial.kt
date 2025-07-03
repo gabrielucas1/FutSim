@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.stringResource // Importação adicionada
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -50,7 +50,7 @@ fun TelaInicial(navHostController: NavHostController) {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.futsim),
-                contentDescription = "Logo do FutSim",
+                contentDescription = stringResource(R.string.app_name), // Usando stringResource
                 modifier = Modifier.size(600.dp)
             )
             Spacer(modifier = Modifier.height(30.dp))
@@ -71,31 +71,31 @@ fun TelaInicial(navHostController: NavHostController) {
         }
 
         InfoSection(
-            title = "Monte seus próprios campeonatos de futebol!",
-            description = "Simule mata-mata, pontos corridos e acompanhe tudo direto do celular. Fácil, rápido e divertido!"
+            title = stringResource(R.string.info_section_title_1), // String substituída
+            description = stringResource(R.string.info_section_desc_1) // String substituída
         )
         // Imagem adicionada para a apresentção
         Image(
             painter = painterResource(id = R.drawable.chuteirabolatrofeu),
-            contentDescription = "Imagem de apresentação",
+            contentDescription = stringResource(R.string.content_desc_apresentacao), // String substituída
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
                 .padding(vertical = 16.dp),
             alignment = Alignment.Center
         )
-        
+
         Spacer(modifier = Modifier.height(20.dp))
 
         // Seção 2: Campeonatos Mata-Mata
         InfoSection(
-            title = "Campeonatos Mata-Mata",
-            description = "Simule torneios eliminatórios, como copas e ligas com fases de playoff. Acompanhe o chaveamento, resultados e o avanço dos times até a grande final!"
+            title = stringResource(R.string.info_section_title_mata_mata), // String substituída
+            description = stringResource(R.string.info_section_desc_mata_mata) // String substituída
         )
         // Imagem adicionada para a seção de mata mata
         Image(
             painter = painterResource(id = R.drawable.imgmatamata),
-            contentDescription = "Imagem de mata mata",
+            contentDescription = stringResource(R.string.content_desc_mata_mata), // String substituída
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
@@ -105,13 +105,13 @@ fun TelaInicial(navHostController: NavHostController) {
 
         // Seção 3: Campeonatos Pontos Corridos
         InfoSection(
-            title = "Campeonatos de Pontos Corridos",
-            description = "Crie ligas onde todos os times se enfrentam, acumulando pontos por vitória e empate. Gerencie a tabela de classificação, gols marcados e sofridos, e o saldo de gols para coroar o campeão ao final da temporada."
+            title = stringResource(R.string.info_section_title_pontos_corridos), // String substituída
+            description = stringResource(R.string.info_section_desc_pontos_corridos) // String substituída
         )
         // Imagem adicionada para a seção de Pontos Corridos
         Image(
             painter = painterResource(id = R.drawable.pontoscorridos),
-            contentDescription = "Imagem de Pontos Corridos",
+            contentDescription = stringResource(R.string.content_desc_pontos_corridos), // String substituída
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
@@ -131,7 +131,7 @@ fun TelaInicial(navHostController: NavHostController) {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "FutSim © 2025 - Todos os direitos reservados",
+                text = stringResource(R.string.footer_text), // String substituída
                 color = MaterialTheme.colorScheme.onPrimary,
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center

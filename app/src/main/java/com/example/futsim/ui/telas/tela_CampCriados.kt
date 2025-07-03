@@ -11,8 +11,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource // Importação adicionada
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.futsim.R // Importação adicionada para acessar R.string
 import com.example.futsim.model.Campeonato
 import com.example.futsim.model.TipoCampeonato
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
@@ -31,12 +33,12 @@ fun TelaCampCriados(navHostController: NavHostController) {
     if (showDialog && campeonatoSelecionado != null) {
         AlertDialog(
             onDismissRequest = { showDialog = false },
-            title = { Text("Editar nome do campeonato") },
+            title = { Text(stringResource(R.string.editar_nome_campeonato)) },
             text = {
                 OutlinedTextField(
                     value = nomeEditado,
                     onValueChange = { nomeEditado = it },
-                    label = { Text("Nome do campeonato") }
+                    label = { Text(stringResource(R.string.nome_campeonato)) }
                 )
             },
             confirmButton = {
@@ -47,12 +49,12 @@ fun TelaCampCriados(navHostController: NavHostController) {
                     }
                     showDialog = false
                 }) {
-                    Text("Salvar")
+                    Text(stringResource(R.string.salvar))
                 }
             },
             dismissButton = {
                 OutlinedButton(onClick = { showDialog = false }) {
-                    Text("Cancelar")
+                    Text(stringResource(R.string.cancelar))
                 }
             }
         )
@@ -93,10 +95,10 @@ fun TelaCampCriados(navHostController: NavHostController) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = when (campeonato.tipo) {
-                                TipoCampeonato.MATA_MATA -> "Mata-Mata"
-                                TipoCampeonato.FASE_GRUPOS -> "Fase de Grupos"
-                                TipoCampeonato.PONTOS_CORRIDOS -> "Pontos Corridos"
-                                TipoCampeonato.NENHUM -> "Tipo não definido"
+                                TipoCampeonato.MATA_MATA -> stringResource(R.string.tipo_mata_mata)
+                                TipoCampeonato.FASE_GRUPOS -> stringResource(R.string.tipo_fase_grupos)
+                                TipoCampeonato.PONTOS_CORRIDOS -> stringResource(R.string.tipo_pontos_corridos)
+                                TipoCampeonato.NENHUM -> stringResource(R.string.tipo_nao_definido)
                             },
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -108,12 +110,12 @@ fun TelaCampCriados(navHostController: NavHostController) {
                             nomeEditado = campeonato.nome
                             showDialog = true
                         }) {
-                            Icon(Icons.Filled.Edit, contentDescription = "Editar", tint = MaterialTheme.colorScheme.secondary)
+                            Icon(Icons.Filled.Edit, contentDescription = stringResource(R.string.editar), tint = MaterialTheme.colorScheme.secondary)
                         }
                         IconButton(onClick = {
                             viewModel.deletarCampeonato(campeonato)
                         }) {
-                            Icon(Icons.Filled.Delete, contentDescription = "Excluir", tint = MaterialTheme.colorScheme.error)
+                            Icon(Icons.Filled.Delete, contentDescription = stringResource(R.string.excluir), tint = MaterialTheme.colorScheme.error)
                         }
                     }
                 }

@@ -16,11 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.futsim.R // Importação adicionada para acessar R.string
 import com.example.futsim.model.Campeonato
 import com.example.futsim.model.TipoCampeonato
 import com.example.futsim.navigation.BottomNavItem
@@ -38,7 +40,7 @@ fun TelaCriarCamp(navHostController: NavHostController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Novo Campeonato", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.novo_campeonato_titulo), fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = {
                         navHostController.navigate(BottomNavItem.Campeonatos.route) {
@@ -70,7 +72,7 @@ fun TelaCriarCamp(navHostController: NavHostController) {
                     .padding(16.dp),
                 enabled = nome.isNotBlank() && tipoCampeonato != null
             ) {
-                Text("Criar Campeonato")
+                Text(stringResource(R.string.criar_campeonato), fontSize = 18.sp, color = Color.White) 
             }
         }
     ) { innerPadding ->
@@ -89,14 +91,14 @@ fun TelaCriarCamp(navHostController: NavHostController) {
                     nome = it
                     nomeError = it.isBlank()
                 },
-                label = { Text("Nome do Campeonato") },
+                label = { Text(stringResource(R.string.nome_campeonato)) }, // String substituída
                 isError = nomeError,
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
             if (nomeError) {
                 Text(
-                    text = "O nome do campeonato é obrigatório",
+                    text = stringResource(R.string.nome_campeonato_obrigatorio_erro), // String substituída
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier
@@ -108,7 +110,7 @@ fun TelaCriarCamp(navHostController: NavHostController) {
             Spacer(Modifier.height(32.dp))
 
             Text(
-                text = "Selecione o formato",
+                text = stringResource(R.string.selecione_formato), // String substituída
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -116,24 +118,24 @@ fun TelaCriarCamp(navHostController: NavHostController) {
             )
 
             TipoCampeonatoCard(
-                label = "Pontos Corridos",
-                description = "Liga onde todos jogam contra todos.",
+                label = stringResource(R.string.tipo_pontos_corridos), // String substituída
+                description = stringResource(R.string.desc_pontos_corridos), // String substituída
                 icon = Icons.Default.BarChart,
                 isSelected = tipoCampeonato == TipoCampeonato.PONTOS_CORRIDOS,
                 onClick = { tipoCampeonato = TipoCampeonato.PONTOS_CORRIDOS }
             )
             Spacer(Modifier.height(12.dp))
             TipoCampeonatoCard(
-                label = "Mata-Mata",
-                description = "Torneio eliminatório até a final.",
+                label = stringResource(R.string.tipo_mata_mata), // String substituída
+                description = stringResource(R.string.desc_mata_mata), // String substituída
                 icon = Icons.Default.MilitaryTech,
                 isSelected = tipoCampeonato == TipoCampeonato.MATA_MATA,
                 onClick = { tipoCampeonato = TipoCampeonato.MATA_MATA }
             )
             Spacer(Modifier.height(12.dp))
             TipoCampeonatoCard(
-                label = "Fase de Grupos",
-                description = "Grupos com classificação para o mata-mata.",
+                label = stringResource(R.string.tipo_fase_grupos), // String substituída
+                description = stringResource(R.string.desc_fase_grupos), // String substituída
                 icon = Icons.Default.Groups,
                 isSelected = tipoCampeonato == TipoCampeonato.FASE_GRUPOS,
                 onClick = { tipoCampeonato = TipoCampeonato.FASE_GRUPOS }
@@ -171,7 +173,7 @@ fun TipoCampeonatoCard(
         ) {
             Icon(
                 imageVector = icon,
-                contentDescription = label,
+                contentDescription = label, // contentDescription pode usar a própria label aqui, já que ela já é uma string localizada.
                 modifier = Modifier.size(40.dp),
                 tint = contentColor
             )
