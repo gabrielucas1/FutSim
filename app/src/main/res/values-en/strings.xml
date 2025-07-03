@@ -78,4 +78,17 @@
     <string name="final_label">Final</string>
     <string name="avancar_para_fase">Advance to %1$s</string>
     <string name="resetar">Reset</string>
+
+    <!--strings for tela_PontosCorridos.kt -->
+    <string name="adicionar_time_dialog_titulo">Add Team</string>
+    <string name="editar_time_dialog_titulo">Edit Team</string>
+    <string name="time_adicionado_snackbar">Team added!</string>
+    <string name="time_atualizado_snackbar">Team updated!</string>
+    <string name="excluir_time_dialog_titulo">Delete Team?</string>
+    <string name="excluir_time_dialog_texto">Are you sure you want to delete the team \"%1$s\"? This action cannot be undone.</string>
+    <string name="time_excluido_snackbar">Team deleted!</string>
+    <string name="adicionar_time_content_desc">Add Team</string>
+    <string name="pontos_corridos_titulo">Round Robin</string>
+    <string name="voltar_content_desc">Back</string>
+    <string name="nenhum_time_adicionado_mensagem">No teams added yet.\nClick the \'+\' button to start!</string>
 </resources>

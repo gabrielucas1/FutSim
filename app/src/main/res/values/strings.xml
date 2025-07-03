@@ -78,4 +78,17 @@
     <string name="final_label">Final</string>
     <string name="avancar_para_fase">Avançar para %1$s</string>
     <string name="resetar">Resetar</string>
+
+    <!--strings para tela_PontosCorridos.kt -->
+    <string name="adicionar_time_dialog_titulo">Adicionar Time</string>
+    <string name="editar_time_dialog_titulo">Editar Time</string>
+    <string name="time_adicionado_snackbar">Time adicionado!</string>
+    <string name="time_atualizado_snackbar">Time atualizado!</string>
+    <string name="excluir_time_dialog_titulo">Excluir Time?</string>
+    <string name="excluir_time_dialog_texto">Você tem certeza que deseja excluir o time \"%1$s\"? Esta ação não pode ser desfeita.</string>
+    <string name="time_excluido_snackbar">Time excluído!</string>
+    <string name="adicionar_time_content_desc">Adicionar Time</string>
+    <string name="pontos_corridos_titulo">Pontos Corridos</string>
+    <string name="voltar_content_desc">Voltar</string>
+    <string name="nenhum_time_adicionado_mensagem">Nenhum time adicionado ainda.\nClique no botão \'+\' para começar!</string>
 </resources>
