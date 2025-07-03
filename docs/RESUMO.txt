@@ -1,0 +1,110 @@
+*   6cd14efc85801f3b40ce38149ece3fd238dc42d3 Merge pull request #13 from Luiz-Andalezio/Jussie
+|\  
+| * 8228ffab3ef296b0b158f544b2b237f3d6b161f7 feat(Strings): Implementa string resources na tela de pontos corridos
+|/  
+* 095ec41c173656f59270fcbdcafab6377c707121 test(test): rebase test
+*   25e779f4977b7ec2bffd621c7fcdb45b73f73bb2 Merge pull request #12 from Luiz-Andalezio/Gabriel
+|\  
+| *   e5a7601da51ffa8b83739c4ce78c44ff8cfc8556 Merge branch 'main' into Gabriel
+| |\  
+| |/  
+|/|   
+* |   639ce756a998facd94d1417271f1985402b7d9c9 Merge pull request #11 from Luiz-Andalezio/Jussie
+|\ \  
+| * | f8c0e034b5e5f551b3d368dcbd4a658fb149b669 feat(String values): coloca strings traduzidas para o mata mata em inglês e portugês
+| * | d107480dc00c15acf8e045d8251fe68b63bd3a30 fix(redirecionamneto): corrige o redirecionamnto do card dos campeonatos criados
+|/ /  
+* | b4dcb5cd1660bcd922392b2cbd027a05808e7797  Alteração dos valores de String das telas inicial e fase de grupos
+* | b9e0005e2c1ad1a34aca28e5dacc3cfc558bd0f9 Alteração da String values da tela de criar campeonatos
+* | d130e815608ffd98bbcd63294b54ed123e32170a Alteração Values String
+* |   6c11b559731189b72726ac69e7867cb9d21210ec Merge pull request #10 from Luiz-Andalezio/Gabriel
+|\ \  
+| | * 5d28d571f32e34024c46285e88e3c98920cfcbac refactor(navbar): Ajustado a navegação dos botoes do navbar.
+| |/  
+| * c986b17cfae5529afee677cfacc193295cfa8472 style(Tela_CriandoCamp): Aprimora a estilização da tela de criação de campeonato.
+| * 91c280bbbc5d867491308289d38e490057b45d34 style(tela_CriandoCamp): Deixando a tela de criar campeoanto mais estilizada.
+|/  
+* cd5f5045711388c15d64e7e7193dfc6be25937c1 Estilizando PontosCorridos pt2
+* 5bfe869e89ccb059c3cb05e258129e2121c4bd83 Novas Features no Mata-Mata
+* c50deedb68f138e9501922b099b8957df379de0e Funcionalidade Mata-Mata(Com Persistentencia)
+* cb7e29e39eefd379e8c56094c7a2f2d9f78ffced Configs Mata-Mata (Sem Persistencia)
+* a9431ffc00d3fec7de11fbe783d7aaf2d8f7a590 alteração na tela inicial
+* 3547da443d84890ff421b501c84da91d9942b246 Adicionando imagens na tela principal
+| * f53e0f26d784edb4eefe82b25602627736e207f4 style(tela_CriandoCamp): Deixando a tela de criar campeoanto mais estilizada.
+|/  
+* e94bbdb43deb97c90a7857b57ebb73dda91d019e Criação da estrutura da landing page (tela inicial)
+* ce8e39fcb9563dfee9418bb7f9b4ee55b9ff8861 Reestruturando o visual do app
+*   e6d6688c5c4ef02ac62b85ee45b2472a3ed96e72 Merge pull request #9 from Luiz-Andalezio/luiz
+|\  
+| * 266b2e3671a4668acd02c149b6b9960067991009 build(xml): atualiza o workspace.xml
+| | * edd70ac27d28871dc25e3f152c9fbf02a4f3a3c6 build(xml): atualiza o workspace.xml
+| |/  
+| * cdcbdf3a4a46284bb63ba3fa944f0760cfa96037 feat(table): implementa rolagem horizontal para o nome dos times na tabela de pontos corridos
+| * 2a2c824e2934fbf4aba3e97ab87ee613dfe50ae6 style(ui): melhora a ui da tera de criação de campenato
+| * dee86443350b26ff4888e7c443575529efc789bf feat(CRUD): adiciona um sistema CRUD para os times nas tabelas de pontos corridos
+| * b49cd50fc80cafd14d12b5c6287d5a28eea04e17 build(sdk): adiciona a sdk dir de todos os desenvolvedores para evitar erros de SDK location not found
+|/  
+* 1734e029c8cbb47dfcfc9cb455697e5406dc1df4 Inserindo botao de navegação
+*   25df10fa1a9cb21a1d53cddabbb026a3c5ae4ae8 Merge pull request #8 from Luiz-Andalezio/dev
+|\  
+| *   215f73f09b508f310d8fb4744b9266cc70bafd61 feat(merge): merge luiz para dev
+| |\  
+| | * 2e3012104df445e801a54de2daeb35f9c63e65ab feat(tabela pontos corridos): implementa a tabela de pontos corridos para cada campeonato criado
+| | *   00de72a2777fc327c97b0adc86a206ead7b9b720 feat(merge): cria o merge que contem os testes da tela de pontos corridos
+| | |\  
+| | | * 3103c1e2ae0df7544a56cd944bc421b337fe75d9 Criando tabela de times
+| | * |   4535662dfbfc8e7fa33b7cd24fc682a37a143f36 build(pull xml): corrige pull
+| | |\ \  
+| | * | | b067b570cbbd42406d9a7087a3ab233c6eb7ca27 build(workspace.xml): atualiza o xml
+| | * | | 6d35fd1a8533d67b0150ca4e493dbd916a48f5d2 feat(redirecionamentos): após a criação do campeonato, redireciona para a tela de campeonatos criados, onde também foi inserido um botão de ida para o menu principal
+| | * | | 11787a06e4d2aa92d3f574b9ab56a16f09864195 feat(editar campeonatos): lista os campeonatos junto com as opções funcionais de edição e exclusão
+| | * | | 039317bd1bdadfb3f98984549c677e8358c6c62a feat(criar campeonatos): possibilita a criação de campeonatos com persistência de dados no back-end
+* | | | | 6b9dcbe9740aa712a9b54b49bdfecbbe8a62f0c6 Merge pull request #6 from Luiz-Andalezio/dev
+|\| | | | 
+| * | | |   b44b28da932c780fde02e03c17a3b98b76c890e1 feat(merge): merge com a branch luiz
+| |\ \ \ \  
+| | |/ / /  
+| |/| / /   
+| | |/ /    
+| | * | 16a08230f310c70ea174f032b599af6278847cd3 build(workspace.xml): atualiza o xml
+| | * | 4ce1b313a9c30590ab3d1b8ef85a87b9ef4405f1 feat(redirecionamentos): após a criação do campeonato, redireciona para a tela de campeonatos criados, onde também foi inserido um botão de ida para o menu principal
+| | * | f982e1c3bf5defc6121314c5650bd03ac3b21daa feat(editar campeonatos): lista os campeonatos junto com as opções funcionais de edição e exclusão
+| | * | cb8781d58e66a497b13f876e6eb4ee4f81928560 feat(criar campeonatos): possibilita a criação de campeonatos com persistência de dados no back-end
+| | * | 05f6f10971f3975ae31f3c313054ca0afdeb7c89 build(gradle): aprimora as configurações de build e dependências
+* | | | ea298d83c7adf42260df06f2307b526c5480a405 Merge pull request #5 from Luiz-Andalezio/dev
+|\| | | 
+| * | | 5200145bbe3044f0c9d07905de26a4f85e8c1df2 build(gradle): aprimora as configurações de build e dependências
+| |/ /  
+| * | 82dd0be31164863513846eafc224d4fb2a2ad8b4 feat(strings): adiciona strings
+| * | 1c0894205cd0c1fcf59b67a800aaadd45122ecc5 test(viewmodel): adiciona os primeiros testes de viewmodel
+| * | fb0ff09b101e79debb4f99884e850697dd821c9a build(gradle): implements kapt dependencies
+| * | bdbfb835e2abce4735623cf97b8da3d99f155b65 feat(model): adiciona o model campeonato
+| * | 3562159839554213456cace9ad1ef2ee98c2fe78 build(test): adiciona testes de build
+| * | 01f13f94e0c5cb8e0c2317d472465bbf86e192b2 feat(telas): implementa o uso de viewmodel nas telas
+| * | 1b36c370eb79d09de3649e6f42882bf31124a482 feat(data): implements first data archives
+| * |   7c67413a7fbe94d87de13ba6432e2f6fa298af1c feat(merge): others implementations
+| |\ \  
+| |/ /  
+|/| |   
+* | |   b31a8ed1ba9ab61c3a3376c8ef47d762aff8962f Merge pull request #4 from jussie-lopes23/Dev
+|\ \ \  
+| |_|/  
+|/| |   
+| * | 7959d2280798b7f41d726d21ecaf9659235c2250 Alterações nas telas de campeonatos
+|/ /  
+* | 4d2f5c064c1ffab957723a803f360d0810744a75 docs(readme):
+* |   ae88956dad1589c2b58bafd2f20b653ee998d574 Merge pull request #3 from gabrielucas1/TCD-13
+|\ \  
+| * | 20d5461ebef13c7d2f8cad616a5dd91d7d509690 fix(merge): Adiciona as telas
+* | | c75dd0074d886483b282fa871b5a1f0dec344d7c Merge pull request #2 from gabrielucas1/TCD-13
+|\| | 
+| * | 660087e8c80feb55bf6bf6682352e3b7dc9320ee test(screens): Adiciona telas para o testes de navegação
+|/ /  
+* |   9c26b770e53e53f18d8608a939bb08dbfa2dfc0f Merge pull request #1 from Luiz-Andalezio/dev
+|\ \  
+| | * a55b9de0a7e8c6064577d2685f20519ab86ebfcf build(idea): saves local changes after pulling
+| |/  
+| * 075f50ff1655b53d3ae2080cbce1b287b3affa22 build(dependencies): Insere os primeiros códigos do padrão de build do kotlin android studio
+| * 911a96034e04e4ac580d02e05488a1bb2881e95a docs(readme):
+|/  
+* eb88c86bfdc3d8c49f04f56aa2d70a429a225ebd Initial commit
