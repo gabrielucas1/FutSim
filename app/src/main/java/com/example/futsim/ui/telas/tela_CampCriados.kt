@@ -69,7 +69,8 @@ fun TelaCampCriados(navHostController: NavHostController) {
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .clickable {
                         when (campeonato.tipo) {
-                            TipoCampeonato.MATA_MATA -> navHostController.navigate("tela_MataMata")
+                            // Navegação atualizada para passar o ID do campeonato
+                            TipoCampeonato.MATA_MATA -> navHostController.navigate("tela_MataMata/${campeonato.id}")
                             TipoCampeonato.PONTOS_CORRIDOS -> navHostController.navigate("tela_PontosCorridos/${campeonato.id}")
                             TipoCampeonato.FASE_GRUPOS -> navHostController.navigate("tela_FaseGrupos")
                             else -> {}

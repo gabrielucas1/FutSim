@@ -38,12 +38,15 @@ class MainActivity : ComponentActivity() {
             applicationContext,
             FutSimDatabase::class.java,
             "futsim_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration() // Adicione esta linha
+            .build()
 
         val repository = FutSimRepository(
             database.timeDao(),
             database.campeonatoDao(),
-            database.partidaDao()
+            database.partidaDao(),
+            database.mataMataStateDao() // Passe o novo DAO aqui
         )
         val factory = FutSimViewModelFactory(repository)
 
@@ -65,7 +68,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+// ... o resto do arquivo MainActivity.kt permanece igual
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -90,7 +93,6 @@ fun BottomNavigationBar(navController: NavHostController) {
         }
     }
 }
-
 @Composable
 fun AppNavHost(navController: NavHostController, modifier: Modifier) {
     NavHost(
@@ -103,7 +105,18 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         composable(BottomNavItem.TelaPrincipal.route) { TelaPrincipal(navController) }
         composable(BottomNavItem.Campeonatos.route) { TelaCampCriados(navController) }
         composable("tela_CriandoCamp") { TelaCriarCamp(navController) }
-        composable("tela_MataMata") { TelaMataMata(navController) }
+
+        // Rota atualizada para receber o ID do campeonato
+        composable("tela_MataMata/{campeonatoId}") { backStackEntry ->
+            val campeonatoId =
+                backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
+                    ?: run {
+                        Log.e("MainActivity", "ID do campeonato inválido ou nulo")
+                        return@composable
+                    }
+            TelaMataMata(navController, campeonatoId)
+        }
+
         composable("tela_FaseGrupos") { TelaFaseDeGrupos(navController) }
         composable("tela_PontosCorridos/{campeonatoId}") { backStackEntry ->
             val campeonatoId =

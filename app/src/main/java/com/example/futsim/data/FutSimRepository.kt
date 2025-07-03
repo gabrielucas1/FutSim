@@ -1,13 +1,15 @@
 package com.example.futsim.data
 
 import com.example.futsim.model.Campeonato
+import com.example.futsim.model.MataMataState
 import com.example.futsim.model.Partida
 import com.example.futsim.model.Time
 
 class FutSimRepository(
     private val timeDao: TimeDao,
     private val campeonatoDao: CampeonatoDao,
-    private val partidaDao: PartidaDao
+    private val partidaDao: PartidaDao,
+    private val mataMataStateDao: MataMataStateDao // Adicione este parâmetro
 ) {
     //Times
     suspend fun inserirTime(time: Time) = timeDao.inserir(time)
@@ -27,4 +29,8 @@ class FutSimRepository(
     suspend fun listarPartidasPorCampeonato(campeonatoId: Int) = partidaDao.listarPorCampeonato(campeonatoId)
     suspend fun atualizarPartida(partida: Partida) = partidaDao.atualizar(partida)
     suspend fun deletarPartida(partida: Partida) = partidaDao.deletar(partida)
+
+    // MÉTODOS NOVOS PARA PERSISTÊNCIA DO MATA-MATA
+    suspend fun getMataMataState(campeonatoId: Int): MataMataState? = mataMataStateDao.getState(campeonatoId)
+    suspend fun saveMataMataState(state: MataMataState) = mataMataStateDao.saveState(state)
 }
