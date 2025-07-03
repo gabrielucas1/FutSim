@@ -14,4 +14,10 @@
     <string name="tipo_fase_grupos">Fase de Grupos</string>
     <string name="tipo_pontos_corridos">Pontos Corridos</string>
     <string name="tipo_nao_definido">Tipo não definido</string>
+    <string name="novo_campeonato_titulo">Novo Campeonato</string>
+    <string name="nome_campeonato_obrigatorio_erro">O nome do campeonato é obrigatório</string>
+    <string name="selecione_formato">Selecione o formato</string>
+    <string name="desc_pontos_corridos">Liga onde todos jogam contra todos.</string>
+    <string name="desc_mata_mata">Torneio eliminatório até a final.</string>
+    <string name="desc_fase_grupos">Grupos com classificação para o mata-mata.</string>
 </resources>

@@ -14,4 +14,10 @@
     <string name="tipo_fase_grupos">Group Stage</string>
     <string name="tipo_pontos_corridos">Round Robin</string>
     <string name="tipo_nao_definido">Type not defined</string>
+    <string name="novo_campeonato_titulo">New Tournament</string>
+    <string name="nome_campeonato_obrigatorio_erro">Tournament name is required</string>
+    <string name="selecione_formato">Select format</string>
+    <string name="desc_pontos_corridos">League where everyone plays against everyone.</string>
+    <string name="desc_mata_mata">Elimination tournament until the final.</string>
+    <string name="desc_fase_grupos">Groups with knockout stage qualification.</string>
 </resources>
