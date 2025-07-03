@@ -5,10 +5,15 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember // Importação adicionada
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -58,7 +63,16 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(LocalFutSimViewModel provides viewModel) {
                     Scaffold(
                         bottomBar = {
-                            BottomNavigationBar(navController)
+                            val navBackStackEntry by navController.currentBackStackEntryAsState()
+                            val currentRoute = navBackStackEntry?.destination?.route
+                            val showBottomBar = remember(currentRoute) {
+                                // Mostra a barra apenas nas telas principais
+                                bottomNavItemsList.any { it.route == currentRoute }
+                            }
+                            
+                            if (showBottomBar) {
+                                BottomNavigationBar(navController)
+                            }
                         }
                     ) { innerPadding ->
                         AppNavHost(navController, Modifier.padding(innerPadding))
@@ -68,7 +82,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-// ... o resto do arquivo MainActivity.kt permanece igual
+
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -81,18 +95,21 @@ fun BottomNavigationBar(navController: NavHostController) {
                 label = { Text(screen.label) },
                 selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
                 onClick = {
-                    navController.navigate(screen.route) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
+                    if (currentDestination?.route != screen.route) {
+                        navController.navigate(screen.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
                 }
             )
         }
     }
 }
+
 @Composable
 fun AppNavHost(navController: NavHostController, modifier: Modifier) {
     NavHost(
@@ -100,31 +117,38 @@ fun AppNavHost(navController: NavHostController, modifier: Modifier) {
         startDestination = BottomNavItem.TelaInicial.route,
         modifier = modifier
     ) {
-        // Chamadas corrigidas para as telas corretas
-        composable(BottomNavItem.TelaInicial.route) { TelaInicial(navController) }
-        composable(BottomNavItem.TelaPrincipal.route) { TelaPrincipal(navController) }
-        composable(BottomNavItem.Campeonatos.route) { TelaCampCriados(navController) }
-        composable("tela_CriandoCamp") { TelaCriarCamp(navController) }
-
-        // Rota atualizada para receber o ID do campeonato
+        // Rotas principais (BottomNav)
+        composable(BottomNavItem.TelaInicial.route) { 
+            TelaInicial(navController) 
+        }
+        composable(BottomNavItem.TelaPrincipal.route) { 
+            TelaPrincipal(navController) 
+        }
+        composable(BottomNavItem.Campeonatos.route) { 
+            TelaCampCriados(navController) 
+        }
+        
+        // Rotas secundárias
+        composable("tela_CriandoCamp") { 
+            TelaCriarCamp(navController) 
+        }
         composable("tela_MataMata/{campeonatoId}") { backStackEntry ->
-            val campeonatoId =
-                backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
-                    ?: run {
-                        Log.e("MainActivity", "ID do campeonato inválido ou nulo")
-                        return@composable
-                    }
+            val campeonatoId = backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
+                ?: run {
+                    Log.e("MainActivity", "ID do campeonato inválido ou nulo")
+                    return@composable
+                }
             TelaMataMata(navController, campeonatoId)
         }
-
-        composable("tela_FaseGrupos") { TelaFaseDeGrupos(navController) }
+        composable("tela_FaseGrupos") { 
+            TelaFaseDeGrupos(navController) 
+        }
         composable("tela_PontosCorridos/{campeonatoId}") { backStackEntry ->
-            val campeonatoId =
-                backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
-                    ?: run {
-                        Log.e("MainActivity", "ID do campeonato inválido ou nulo")
-                        return@composable
-                    }
+            val campeonatoId = backStackEntry.arguments?.getString("campeonatoId")?.toIntOrNull()
+                ?: run {
+                    Log.e("MainActivity", "ID do campeonato inválido ou nulo")
+                    return@composable
+                }
             TelaPontosCorridos(navController, campeonatoId)
         }
     }

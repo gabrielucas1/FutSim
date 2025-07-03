@@ -24,7 +24,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.futsim.navigation.BottomNavItem
 import com.example.futsim.ui.componentes.ButtonUniversal
 
 @Composable
@@ -54,7 +56,15 @@ fun TelaInicial(navHostController: NavHostController) {
             Spacer(modifier = Modifier.height(30.dp))
             ButtonUniversal(
                 text = stringResource(id = R.string.iniciar_simulador),
-                onClick = { navHostController.navigate("tela_principal") },
+                onClick = { 
+                    navHostController.navigate(BottomNavItem.TelaPrincipal.route) {
+                        popUpTo(navHostController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                },
                 modifier = Modifier.fillMaxWidth(),
                 buttonColor = MaterialTheme.colorScheme.primary
             )

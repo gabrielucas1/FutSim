@@ -16,6 +16,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,7 +28,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.example.futsim.navigation.BottomNavItem
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -138,6 +141,16 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("Mata-Mata", fontWeight = FontWeight.Bold, fontSize = 22.sp) },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navController.navigate(BottomNavItem.Campeonatos.route) {
+                            popUpTo(navController.graph.findStartDestination().id)
+                            launchSingleTop = true
+                        }
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
+                    }
+                },
                 actions = {
                     IconButton(onClick = { showResetDialog = true }) {
                         Icon(Icons.Default.Refresh, contentDescription = "Resetar Tabela")

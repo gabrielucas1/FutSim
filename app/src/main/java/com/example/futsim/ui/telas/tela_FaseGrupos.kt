@@ -5,14 +5,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.futsim.model.TimeTabela
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
-import com.example.futsim.ui.viewmodel.FutSimViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.ui.text.font.FontWeight
+import com.example.futsim.model.TimeTabela
 
 @Composable
 fun HeaderTabelaFaseGrupos() {
@@ -36,11 +39,9 @@ fun HeaderTabelaFaseGrupos() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TelaFaseDeGrupos(
-    navController: NavHostController,
-    viewModel: FutSimViewModel = viewModel()
-) {
+fun TelaFaseDeGrupos(navController: NavHostController) {
     val times = remember {
         mutableStateListOf(
             TimeTabela(1, "Palmeiras", 38, 19, 12, 2, 5, 30, 15),
@@ -60,7 +61,19 @@ fun TelaFaseDeGrupos(
     val snackbarHostState = remember { SnackbarHostState() }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text("Fase de Grupos", fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navController.navigateUp()
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
+                    }
+                }
+            )
+        }
     ) { padding ->
 
         LazyColumn(
@@ -169,7 +182,7 @@ fun TelaFaseDeGrupos(
 
             items(timesOrdenados) { time ->
                 LinhaTabela(time)
-                Divider()
+                HorizontalDivider()
             }
         }
     }

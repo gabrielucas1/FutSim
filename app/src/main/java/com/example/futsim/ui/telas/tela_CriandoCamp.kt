@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.MilitaryTech
@@ -18,9 +19,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.example.futsim.model.Campeonato
 import com.example.futsim.model.TipoCampeonato
+import com.example.futsim.navigation.BottomNavItem
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -35,7 +38,17 @@ fun TelaCriarCamp(navHostController: NavHostController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Novo Campeonato", fontWeight = FontWeight.Bold) }
+                title = { Text("Novo Campeonato", fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navHostController.navigate(BottomNavItem.Campeonatos.route) {
+                            popUpTo(navHostController.graph.findStartDestination().id)
+                            launchSingleTop = true
+                        }
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
+                    }
+                }
             )
         },
         bottomBar = {
@@ -46,23 +59,18 @@ fun TelaCriarCamp(navHostController: NavHostController) {
                         val campeonato = Campeonato(nome = nome, tipo = tipoCampeonato!!)
                         viewModel.inserirCampeonato(campeonato)
 
-                        // ✅ NAVEGAÇÃO AJUSTADA AQUI
-                        // Navega para a lista de campeonatos criados
-                        navHostController.navigate("tela_CampCriados") {
-                            // Limpa a tela de criação da pilha de navegação,
-                            // para que o usuário não volte para ela ao pressionar "Voltar".
-                            popUpTo("tela_CriandoCamp") { inclusive = true }
+                        navHostController.navigate(BottomNavItem.Campeonatos.route) {
+                            popUpTo(navHostController.graph.findStartDestination().id)
+                            launchSingleTop = true
                         }
                     }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
-                    .height(56.dp),
-                enabled = nome.isNotBlank() && tipoCampeonato != null,
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    .padding(16.dp),
+                enabled = nome.isNotBlank() && tipoCampeonato != null
             ) {
-                Text("Criar Campeonato", fontSize = 18.sp, color = Color.White)
+                Text("Criar Campeonato")
             }
         }
     ) { innerPadding ->

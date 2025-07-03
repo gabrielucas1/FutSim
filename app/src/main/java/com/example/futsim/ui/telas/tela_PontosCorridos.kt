@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -22,9 +23,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import com.example.futsim.model.Time
 import com.example.futsim.model.TimeTabela
+import com.example.futsim.navigation.BottomNavItem
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
 
@@ -162,6 +165,21 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Adicionar Time")
             }
+        },
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text("Pontos Corridos", fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navHostController.navigate(BottomNavItem.Campeonatos.route) {
+                            popUpTo(navHostController.graph.findStartDestination().id)
+                            launchSingleTop = true
+                        }
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
+                    }
+                }
+            )
         }
     ) { padding ->
         Column(
