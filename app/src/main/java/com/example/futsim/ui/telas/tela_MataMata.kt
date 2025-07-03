@@ -33,8 +33,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import java.util.*
 
-// --- DATA CLASSES E ENUMS (MARCADOS COMO @Serializable) ---
-// Estas classes agora são usadas pelo FutSimViewModel e pela tela
+// --- DATA CLASSES E ENUMS ---
 @Serializable
 enum class FaseTorneio(val label: String, val confrontos: Int) {
     OITAVAS("Oitavas de Final", 8),
@@ -68,17 +67,23 @@ data class Confronto(
     val timeB: TimeMataMata,
     var golsA: String = "",
     var golsB: String = "",
-    val fase: FaseTorneio
+    val fase: FaseTorneio,
+    var finalizado: Boolean = false
 ) {
     val vencedor: TimeMataMata?
         get() {
-            val ga = golsA.toIntOrNull() ?: -1
-            val gb = golsB.toIntOrNull() ?: -1
-            return when {
-                ga > gb -> timeA
-                gb > ga -> timeB
-                else -> null
+            if (!finalizado) return null
+            val ga = golsA.toIntOrNull()
+            val gb = golsB.toIntOrNull()
+
+            if (ga != null && gb != null) {
+                return when {
+                    ga > gb -> timeA
+                    gb > ga -> timeB
+                    else -> null
+                }
             }
+            return null
         }
 }
 
@@ -94,16 +99,13 @@ data class MataMataUiState(
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
-    // Usa o ViewModel central compartilhado
     val viewModel = LocalFutSimViewModel.current
     val uiState by viewModel.mataMataUiState.collectAsState()
 
-    // Carrega o estado do campeonato específico ao entrar na tela
     LaunchedEffect(campeonatoId) {
         viewModel.carregarEstadoMataMata(campeonatoId)
     }
 
-    // Funções de ajuda para modificar o estado no ViewModel
     val setState = { newState: MataMataUiState -> viewModel.updateMataMataState(newState) }
 
     val faseAtualConfig = uiState.faseAtualConfig
@@ -120,6 +122,16 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
         confrontosPorFase.keys.sortedBy { it.ordinal }
     }
     val pagerState = rememberPagerState(pageCount = { todasAsFases.size })
+
+    // ✅ LÓGICA DE NAVEGAÇÃO AUTOMÁTICA AQUI
+    // Este efeito será executado sempre que o número de fases (abas) mudar.
+    LaunchedEffect(todasAsFases.size) {
+        // Se houver mais de uma fase, significa que uma nova foi adicionada.
+        if (todasAsFases.size > 1) {
+            // Rola suavemente para a última aba, que é a recém-criada.
+            pagerState.animateScrollToPage(todasAsFases.size - 1)
+        }
+    }
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -164,7 +176,7 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                         if (timesIniciais.all { it.nome.isNotBlank() }) {
                             val timesEmbaralhados = timesIniciais.shuffled()
                             val confrontos = timesEmbaralhados.chunked(2).map {
-                                Confronto(it[0], it[1], fase = faseAtualConfig)
+                                Confronto(it[0], it[1], fase = faseAtualConfig, finalizado = false)
                             }
                             setState(uiState.copy(confrontosPorFase = mapOf(faseAtualConfig to confrontos)))
                         }
@@ -204,29 +216,41 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                                         val novosConfrontosPorFase = confrontosPorFase.toMutableMap()
                                         val faseConfrontos = novosConfrontosPorFase[fase]?.toMutableList() ?: return@MataMataConfrontoCard
                                         val index = faseConfrontos.indexOfFirst { it.timeA.id == confronto.timeA.id }
-
                                         if (index != -1) {
-                                            var novoConfronto = faseConfrontos[index].copy(golsA = golsA, golsB = golsB)
-                                            val ga = novoConfronto.golsA.toIntOrNull() ?: -1
-                                            val gb = novoConfronto.golsB.toIntOrNull() ?: -1
-
-                                            if (ga >= 0 && gb >= 0) {
-                                                val statusA = if (ga > gb) TimeMataMata.Status.VENCEDOR else TimeMataMata.Status.ELIMINADO
-                                                val statusB = if (gb > ga) TimeMataMata.Status.VENCEDOR else TimeMataMata.Status.ELIMINADO
-                                                novoConfronto = novoConfronto.copy(
-                                                    timeA = novoConfronto.timeA.copy(status = statusA),
-                                                    timeB = novoConfronto.timeB.copy(status = statusB)
-                                                )
-                                            }
-                                            faseConfrontos[index] = novoConfronto
+                                            faseConfrontos[index] = faseConfrontos[index].copy(golsA = golsA, golsB = golsB)
                                             novosConfrontosPorFase[fase] = faseConfrontos
                                             setState(uiState.copy(confrontosPorFase = novosConfrontosPorFase))
+                                        }
+                                    },
+                                    onFinalizarClick = {
+                                        val novosConfrontosPorFase = confrontosPorFase.toMutableMap()
+                                        val faseConfrontos = novosConfrontosPorFase[fase]?.toMutableList() ?: return@MataMataConfrontoCard
+                                        val index = faseConfrontos.indexOfFirst { it.timeA.id == confronto.timeA.id }
+
+                                        if (index != -1) {
+                                            val confrontoAtual = faseConfrontos[index]
+                                            val ga = confrontoAtual.golsA.toIntOrNull()
+                                            val gb = confrontoAtual.golsB.toIntOrNull()
+
+                                            if (ga != null && gb != null) {
+                                                val statusA = if (ga > gb) TimeMataMata.Status.VENCEDOR else TimeMataMata.Status.ELIMINADO
+                                                val statusB = if (gb > ga) TimeMataMata.Status.VENCEDOR else TimeMataMata.Status.ELIMINADO
+
+                                                val confrontoFinalizado = confrontoAtual.copy(
+                                                    finalizado = true,
+                                                    timeA = confrontoAtual.timeA.copy(status = statusA),
+                                                    timeB = confrontoAtual.timeB.copy(status = statusB)
+                                                )
+                                                faseConfrontos[index] = confrontoFinalizado
+                                                novosConfrontosPorFase[fase] = faseConfrontos
+                                                setState(uiState.copy(confrontosPorFase = novosConfrontosPorFase))
+                                            }
                                         }
                                     }
                                 )
                             }
 
-                            val todosResultadosPreenchidos = confrontosDaFase.all { it.vencedor != null }
+                            val todosResultadosPreenchidos = confrontosDaFase.all { it.finalizado }
                             if (fase != FaseTorneio.FINAL && todosResultadosPreenchidos) {
                                 item {
                                     Spacer(Modifier.height(16.dp))
@@ -236,16 +260,12 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                                             val proximaFase = FaseTorneio.getNext(fase)
                                             if (proximaFase != null && vencedores.size == confrontosDaFase.size) {
                                                 val novosConfrontos = vencedores.chunked(2).map {
-                                                    Confronto(it[0].copy(status = TimeMataMata.Status.NEUTRO), it[1].copy(status = TimeMataMata.Status.NEUTRO), fase = proximaFase)
+                                                    Confronto(it[0].copy(status = TimeMataMata.Status.NEUTRO), it[1].copy(status = TimeMataMata.Status.NEUTRO), fase = proximaFase, finalizado = false)
                                                 }
                                                 val novosConfrontosPorFase = confrontosPorFase.toMutableMap()
                                                 novosConfrontosPorFase[proximaFase] = novosConfrontos
                                                 setState(uiState.copy(confrontosPorFase = novosConfrontosPorFase))
-
-                                                val nextIndex = todasAsFases.indexOf(fase) + 1
-                                                if(nextIndex < pagerState.pageCount) {
-                                                    coroutineScope.launch { pagerState.animateScrollToPage(nextIndex) }
-                                                }
+                                                // A navegação automática será feita pelo LaunchedEffect
                                             }
                                         },
                                         modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
@@ -310,8 +330,8 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
 }
 
 
-// --- COMPOSABLES REUTILIZÁVEIS (Nenhuma alteração necessária) ---
-// Copie e cole os que você já tinha.
+// --- COMPOSABLES REUTILIZÁVEIS ---
+// (O resto do arquivo permanece o mesmo, sem alterações)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfiguracaoInicialTorneio(
@@ -400,7 +420,8 @@ fun ConfiguracaoInicialTorneio(
 @Composable
 fun MataMataConfrontoCard(
     confronto: Confronto,
-    onGolsChange: (golsA: String, golsB: String) -> Unit
+    onGolsChange: (golsA: String, golsB: String) -> Unit,
+    onFinalizarClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -427,12 +448,7 @@ fun MataMataConfrontoCard(
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 TimeConfrontoBox(time = confronto.timeA)
-                Text(
-                    "X",
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 20.sp,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
+                Text("X", fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
                 TimeConfrontoBox(time = confronto.timeB)
             }
             Spacer(Modifier.height(12.dp))
@@ -444,7 +460,8 @@ fun MataMataConfrontoCard(
                 GolsTextField(
                     value = confronto.golsA,
                     onValueChange = { onGolsChange(it, confronto.golsB) },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    enabled = !confronto.finalizado
                 )
                 Spacer(Modifier.width(8.dp))
                 Text("-", fontSize = 24.sp, fontWeight = FontWeight.Bold)
@@ -452,8 +469,19 @@ fun MataMataConfrontoCard(
                 GolsTextField(
                     value = confronto.golsB,
                     onValueChange = { onGolsChange(confronto.golsA, it) },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+                    enabled = !confronto.finalizado
                 )
+            }
+            if (!confronto.finalizado) {
+                Spacer(Modifier.height(16.dp))
+                Button(
+                    onClick = onFinalizarClick,
+                    modifier = Modifier.fillMaxWidth(),
+                    enabled = confronto.golsA.isNotBlank() && confronto.golsB.isNotBlank()
+                ) {
+                    Text("Finalizar Partida")
+                }
             }
         }
     }
@@ -508,7 +536,12 @@ fun TimeConfrontoBox(time: TimeMataMata) {
 }
 
 @Composable
-fun GolsTextField(value: String, onValueChange: (String) -> Unit, modifier: Modifier = Modifier) {
+fun GolsTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true
+) {
     OutlinedTextField(
         value = value,
         onValueChange = {
@@ -519,7 +552,8 @@ fun GolsTextField(value: String, onValueChange: (String) -> Unit, modifier: Modi
         label = { Text("Gols") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         singleLine = true,
-        modifier = modifier
+        modifier = modifier,
+        enabled = enabled
     )
 }
 
