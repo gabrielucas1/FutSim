@@ -30,7 +30,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=d45ded68)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R9QXB070TTA)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,7 +78,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -209,12 +209,12 @@
       <map>
         <entry key="com.example.futsim">
           <value>
-            <CheckInfo lastCheckTimestamp="1751562356122" />
+            <CheckInfo lastCheckTimestamp="1751561201274" />
           </value>
         </entry>
         <entry key="com.example.futsim.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1751562356121" />
+            <CheckInfo lastCheckTimestamp="1751561201277" />
           </value>
         </entry>
       </map>
