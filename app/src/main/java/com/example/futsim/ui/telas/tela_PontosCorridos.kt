@@ -1,25 +1,24 @@
 package com.example.futsim.ui.telas
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle // Import corrigido
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,8 +28,6 @@ import com.example.futsim.model.TimeTabela
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
 
-// ... (o resto do arquivo continua igual até o Scaffold)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) {
@@ -39,10 +36,12 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
-    var showAddDialog by remember { mutableStateOf(false) }
-    var showEditDialog by remember { mutableStateOf(false) }
-    var editingTime by remember { mutableStateOf<Time?>(null) }
+    // Estados para os diálogos
+    var showAddOrEditDialog by remember { mutableStateOf(false) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
+    var timeSelecionado by remember { mutableStateOf<Time?>(null) }
 
+    // Estados para os campos de texto do diálogo
     var nome by remember { mutableStateOf("") }
     var vitorias by remember { mutableStateOf("") }
     var empates by remember { mutableStateOf("") }
@@ -50,6 +49,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
     var golsPro by remember { mutableStateOf("") }
     var golsContra by remember { mutableStateOf("") }
 
+    // Carrega os times do campeonato ao entrar na tela
     LaunchedEffect(campeonatoId) {
         viewModel.carregarTimesPorCampeonato(campeonatoId)
     }
@@ -61,39 +61,52 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
         derrotas = ""
         golsPro = ""
         golsContra = ""
+        timeSelecionado = null
     }
 
-    if (showAddDialog) {
+    // --- DIÁLOGO DE ADICIONAR/EDITAR TIME ---
+    if (showAddOrEditDialog) {
         AlertDialog(
-            onDismissRequest = { showAddDialog = false },
-            title = { Text("Adicionar Time") },
+            onDismissRequest = {
+                showAddOrEditDialog = false
+                limparCampos()
+            },
+            title = { Text(if (timeSelecionado == null) "Adicionar Time" else "Editar Time") },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedTextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome") }, singleLine = true)
-                    OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text("Vitórias") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text("Empates") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text("Derrotas") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text("Gols Pró") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text("Gols Contra") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
+                    OutlinedTextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome do Time") })
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text("V") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text("E") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text("D") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                    }
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text("GP") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text("GC") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                    }
                 }
             },
             confirmButton = {
                 Button(onClick = {
                     val camposValidos = nome.isNotBlank() && vitorias.toIntOrNull() != null && empates.toIntOrNull() != null && derrotas.toIntOrNull() != null && golsPro.toIntOrNull() != null && golsContra.toIntOrNull() != null
                     if (camposValidos) {
-                        val time = Time(
-                            nome = nome,
-                            campeonatoId = campeonatoId,
-                            vitorias = vitorias.toInt(),
-                            empates = empates.toInt(),
-                            derrotas = derrotas.toInt(),
-                            golsPro = golsPro.toInt(),
-                            golsContra = golsContra.toInt()
-                        )
-                        viewModel.inserirTime(time)
+                        val v = vitorias.toInt()
+                        val e = empates.toInt()
+                        val d = derrotas.toInt()
+                        val gp = golsPro.toInt()
+                        val gc = golsContra.toInt()
+
+                        if (timeSelecionado == null) { // Adicionar novo time
+                            val time = Time(nome = nome, campeonatoId = campeonatoId, vitorias = v, empates = e, derrotas = d, golsPro = gp, golsContra = gc)
+                            viewModel.inserirTime(time)
+                            coroutineScope.launch { snackbarHostState.showSnackbar("Time adicionado!") }
+                        } else { // Atualizar time existente
+                            val timeAtualizado = timeSelecionado!!.copy(nome = nome, vitorias = v, empates = e, derrotas = d, golsPro = gp, golsContra = gc)
+                            viewModel.atualizarTime(timeAtualizado)
+                            coroutineScope.launch { snackbarHostState.showSnackbar("Time atualizado!") }
+                        }
+                        showAddOrEditDialog = false
                         limparCampos()
-                        showAddDialog = false
-                        coroutineScope.launch { snackbarHostState.showSnackbar("Time adicionado!") }
                     } else {
                         coroutineScope.launch { snackbarHostState.showSnackbar("Preencha todos os campos corretamente.") }
                     }
@@ -101,63 +114,39 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
             },
             dismissButton = {
                 OutlinedButton(onClick = {
+                    showAddOrEditDialog = false
                     limparCampos()
-                    showAddDialog = false
                 }) { Text("Cancelar") }
             }
         )
     }
 
-    if (showEditDialog && editingTime != null) {
+    // --- DIÁLOGO DE CONFIRMAÇÃO DE EXCLUSÃO ---
+    if (showDeleteDialog && timeSelecionado != null) {
         AlertDialog(
-            onDismissRequest = { showEditDialog = false },
-            title = { Text("Editar Time") },
-            text = {
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedTextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome") }, singleLine = true)
-                    OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text("Vitórias") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text("Empates") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text("Derrotas") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text("Gols Pró") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                    OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text("Gols Contra") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
-                }
+            onDismissRequest = {
+                showDeleteDialog = false
+                limparCampos()
             },
+            icon = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
+            title = { Text("Excluir Time?") },
+            text = { Text("Você tem certeza que deseja excluir o time \"${timeSelecionado?.nome}\"? Esta ação não pode ser desfeita.") },
             confirmButton = {
-                Button(onClick = {
-                    val camposValidos = nome.isNotBlank() && vitorias.toIntOrNull() != null && empates.toIntOrNull() != null && derrotas.toIntOrNull() != null && golsPro.toIntOrNull() != null && golsContra.toIntOrNull() != null
-                    if (camposValidos && editingTime != null) {
-                        val timeAtualizado = editingTime!!.copy(
-                            nome = nome,
-                            vitorias = vitorias.toInt(),
-                            empates = empates.toInt(),
-                            derrotas = derrotas.toInt(),
-                            golsPro = golsPro.toInt(),
-                            golsContra = golsContra.toInt()
-                        )
-                        viewModel.atualizarTime(timeAtualizado)
+                Button(
+                    onClick = {
+                        viewModel.deletarTime(timeSelecionado!!)
+                        coroutineScope.launch { snackbarHostState.showSnackbar("Time excluído!") }
+                        showDeleteDialog = false
                         limparCampos()
-                        showEditDialog = false
-                        coroutineScope.launch { snackbarHostState.showSnackbar("Time atualizado!") }
-                    } else {
-                        coroutineScope.launch { snackbarHostState.showSnackbar("Preencha todos os campos corretamente.") }
-                    }
-                }) { Text("Salvar") }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                ) { Text("Excluir") }
             },
             dismissButton = {
                 OutlinedButton(onClick = {
+                    showDeleteDialog = false
                     limparCampos()
-                    showEditDialog = false
                 }) { Text("Cancelar") }
-            },
-            icon = {
-                IconButton(onClick = {
-                    editingTime?.let { viewModel.deletarTime(it) }
-                    limparCampos()
-                    showEditDialog = false
-                    coroutineScope.launch { snackbarHostState.showSnackbar("Time excluído!") }
-                }) {
-                    Icon(Icons.Default.Delete, contentDescription = "Excluir")
-                }
             }
         )
     }
@@ -166,7 +155,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { showAddDialog = true },
+                onClick = { showAddOrEditDialog = true },
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = Color.White,
                 shape = CircleShape
@@ -179,83 +168,55 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(horizontal = 8.dp)
         ) {
-            Text(
-                "Tabela de Pontos Corridos",
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(vertical = 16.dp)
-            )
-            Divider()
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                item { HeaderTabelaPontosCorridos() }
-                val timesOrdenados = times
-                    .map {
-                        TimeTabela(
-                            posicao = 0,
-                            nome = it.nome,
-                            pontos = it.vitorias * 3 + it.empates,
-                            jogos = it.vitorias + it.empates + it.derrotas,
-                            vitorias = it.vitorias,
-                            empates = it.empates,
-                            derrotas = it.derrotas,
-                            golsPro = it.golsPro,
-                            golsContra = it.golsContra
-                        )
-                    }
-                    .sortedWith(
-                        compareByDescending<TimeTabela> { it.pontos }
-                            .thenByDescending { it.saldoGols }
-                            .thenByDescending { it.golsPro }
-                    )
-                    .mapIndexed { index, time -> time.copy(posicao = index + 1) }
+            val timesOrdenados = times
+                .map {
+                    TimeTabela(posicao = 0, nome = it.nome, pontos = it.vitorias * 3 + it.empates, jogos = it.vitorias + it.empates + it.derrotas, vitorias = it.vitorias, empates = it.empates, derrotas = it.derrotas, golsPro = it.golsPro, golsContra = it.golsContra)
+                }
+                .sortedWith(compareByDescending<TimeTabela> { it.pontos }.thenByDescending { it.vitorias }.thenByDescending { it.saldoGols }.thenByDescending { it.golsPro })
+                .mapIndexed { index, time -> time.copy(posicao = index + 1) }
 
-                items(timesOrdenados) { timeTabela: TimeTabela ->
-                    val time = times.find { it.nome == timeTabela.nome }
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 2.dp, horizontal = 4.dp)
-                            .background(
-                                if (editingTime?.id == time?.id) MaterialTheme.colorScheme.primary.copy(alpha = 0.08f)
-                                else Color.Transparent
-                            ),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        LinhaTabelaPontosCorridos(timeTabela, Modifier.weight(1f))
-                        if (time != null) {
-                            IconButton(
-                                onClick = {
-                                    nome = time.nome
-                                    vitorias = time.vitorias.toString()
-                                    empates = time.empates.toString()
-                                    derrotas = time.derrotas.toString()
-                                    golsPro = time.golsPro.toString()
-                                    golsContra = time.golsContra.toString()
-                                    editingTime = time
-                                    showEditDialog = true
-                                },
-                                modifier = Modifier
-                                    .size(32.dp)
-                                    .padding(start = 4.dp)
-                                    .align(Alignment.CenterVertically)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Settings,
-                                    contentDescription = "Editar/Excluir",
-                                    tint = MaterialTheme.colorScheme.primary
-                                )
+            if (times.isEmpty()) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        "Nenhum time adicionado ainda.\nClique no botão '+' para começar!",
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                    )
+                }
+            } else {
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    item { HeaderTabelaPontosCorridos() }
+
+                    items(timesOrdenados, key = { it.nome }) { timeTabela ->
+                        LinhaTabelaPontosCorridos(
+                            time = timeTabela,
+                            onEditClick = {
+                                val timeOriginal = times.find { it.nome == timeTabela.nome }
+                                if (timeOriginal != null) {
+                                    timeSelecionado = timeOriginal
+                                    nome = timeOriginal.nome
+                                    vitorias = timeOriginal.vitorias.toString()
+                                    empates = timeOriginal.empates.toString()
+                                    derrotas = timeOriginal.derrotas.toString()
+                                    golsPro = timeOriginal.golsPro.toString()
+                                    golsContra = timeOriginal.golsContra.toString()
+                                    showAddOrEditDialog = true
+                                }
+                            },
+                            onDeleteClick = {
+                                timeSelecionado = times.find { it.nome == timeTabela.nome }
+                                showDeleteDialog = true
                             }
-                        }
+                        )
+                        Divider(thickness = 0.5.dp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f))
                     }
-                    Divider()
                 }
             }
         }
@@ -268,52 +229,74 @@ fun HeaderTabelaPontosCorridos() {
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .padding(horizontal = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .padding(vertical = 8.dp, horizontal = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        val headerStyle = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold)
-        Text("#", modifier = Modifier.weight(0.5f), style = headerStyle)
-        Text("Time", modifier = Modifier.weight(2f), style = headerStyle)
-        Text("Pts", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("PJ", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("V", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("E", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("D", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("GP", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("GC", modifier = Modifier.weight(1f), style = headerStyle)
-        Text("SG", modifier = Modifier.weight(1f), style = headerStyle)
+        val headerStyle = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text("#", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("TIME", modifier = Modifier.weight(2f).padding(start = 8.dp), style = headerStyle)
+        Text("P", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("J", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("V", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("E", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("D", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text("SG", modifier = Modifier.width(35.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Spacer(modifier = Modifier.width(72.dp)) // Espaço para os botões de ação
     }
+    Divider(color = MaterialTheme.colorScheme.outline)
 }
 
 @Composable
-fun LinhaTabelaPontosCorridos(time: TimeTabela, modifier: Modifier = Modifier) {
+fun LinhaTabelaPontosCorridos(
+    time: TimeTabela,
+    onEditClick: () -> Unit,
+    onDeleteClick: () -> Unit
+) {
+    val position = time.posicao
+    // ✅ LÓGICA DE COR REMOVIDA
+    // A linha da tabela agora tem um fundo transparente por padrão.
+    val isLeader = position == 1
+
     Row(
-        modifier = modifier.height(IntrinsicSize.Min), // Garante que a linha tenha uma altura consistente
-        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Transparent) // Fundo neutro
+            .padding(horizontal = 4.dp, vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        val cellModifier = Modifier.align(Alignment.CenterVertically)
-        Text("${time.posicao}", modifier = cellModifier.weight(0.5f), fontSize = 14.sp)
-        Box(
-            modifier = cellModifier
-                .weight(2f)
-                .horizontalScroll(rememberScrollState())
-        ) {
-            Text(
-                text = time.nome,
-                fontSize = 14.sp,
-                maxLines = 1,
-                overflow = TextOverflow.Visible
-            )
+
+        val cellStyle = TextStyle(fontSize = 14.sp, color = MaterialTheme.colorScheme.onSurface)
+        Text(
+            "${time.posicao}",
+            modifier = Modifier.width(30.dp),
+            style = cellStyle,
+            textAlign = TextAlign.Center,
+            // Apenas o líder fica em negrito
+            fontWeight = if(isLeader) FontWeight.Bold else FontWeight.Normal
+        )
+        Text(
+            text = time.nome,
+            modifier = Modifier.weight(2f).padding(start = 8.dp),
+            style = cellStyle,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            fontWeight = if(isLeader) FontWeight.Bold else FontWeight.Normal
+        )
+        Text("${time.pontos}", modifier = Modifier.width(30.dp), style = cellStyle.copy(fontWeight = FontWeight.Bold), textAlign = TextAlign.Center)
+        Text("${time.jogos}", modifier = Modifier.width(30.dp), style = cellStyle, textAlign = TextAlign.Center)
+        Text("${time.vitorias}", modifier = Modifier.width(30.dp), style = cellStyle, textAlign = TextAlign.Center)
+        Text("${time.empates}", modifier = Modifier.width(30.dp), style = cellStyle, textAlign = TextAlign.Center)
+        Text("${time.derrotas}", modifier = Modifier.width(30.dp), style = cellStyle, textAlign = TextAlign.Center)
+        Text("${time.saldoGols}", modifier = Modifier.width(35.dp), style = cellStyle, textAlign = TextAlign.Center)
+
+        Row(modifier = Modifier.width(72.dp)) {
+            IconButton(onClick = onEditClick, modifier = Modifier.size(36.dp)) {
+                Icon(Icons.Default.Edit, contentDescription = "Editar", tint = MaterialTheme.colorScheme.primary)
+            }
+            IconButton(onClick = onDeleteClick, modifier = Modifier.size(36.dp)) {
+                Icon(Icons.Default.Delete, contentDescription = "Excluir", tint = MaterialTheme.colorScheme.error)
+            }
         }
-        Text("${time.pontos}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.jogos}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.vitorias}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.empates}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.derrotas}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.golsPro}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.golsContra}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
-        Text("${time.saldoGols}", modifier = cellModifier.weight(1f), fontSize = 14.sp)
     }
 }
