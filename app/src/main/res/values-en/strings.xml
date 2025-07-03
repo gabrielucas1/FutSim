@@ -14,10 +14,41 @@
     <string name="tipo_fase_grupos">Group Stage</string>
     <string name="tipo_pontos_corridos">Round Robin</string>
     <string name="tipo_nao_definido">Type not defined</string>
+
+    <!--strings for tela_CriandoCamp.kt -->
     <string name="novo_campeonato_titulo">New Tournament</string>
     <string name="nome_campeonato_obrigatorio_erro">Tournament name is required</string>
     <string name="selecione_formato">Select format</string>
     <string name="desc_pontos_corridos">League where everyone plays against everyone.</string>
     <string name="desc_mata_mata">Elimination tournament until the final.</string>
     <string name="desc_fase_grupos">Groups with knockout stage qualification.</string>
+
+    <!--strings for tela_FaseGrupos.kt -->
+    <string name="adicionar_novo_time">Add New Team</string>
+    <string name="nome_do_time">Team Name</string>
+    <string name="vitorias_abreviado">W</string>
+    <string name="empates_abreviado">D</string>
+    <string name="derrotas_abreviado">L</string>
+    <string name="gols_pro_abreviado">GF</string>
+    <string name="gols_contra_abreviado">GA</string>
+    <string name="salvar_time">Save Team</string>
+    <string name="time_adicionado_sucesso">Team added successfully!</string>
+    <string name="preencha_campos_corretamente">Please fill in all fields correctly.</string>
+    <string name="tabela_posicao_abreviado">#</string>
+    <string name="tabela_time">Team</string>
+    <string name="tabela_pontos_abreviado">Pts</string>
+    <string name="tabela_jogos_abreviado">GP</string>
+    <string name="tabela_saldo_gols_abreviado">GD</string>
+
+    <!--strings for tela_inicial.kt -->
+    <string name="info_section_title_1">Create your own football tournaments!</string>
+    <string name="info_section_desc_1">Simulate knockout, round-robin, and follow everything directly from your phone. Easy, fast, and fun!</string>
+    <string name="content_desc_apresentacao">Presentation image</string>
+    <string name="info_section_title_mata_mata">Knockout Tournaments</string>
+    <string name="info_section_desc_mata_mata">Simulate elimination tournaments, like cups and playoff leagues. Follow the bracket, results, and team progression until the grand final!</string>
+    <string name="content_desc_mata_mata">Knockout image</string>
+    <string name="info_section_title_pontos_corridos">Round Robin Tournaments</string>
+    <string name="info_section_desc_pontos_corridos">Create leagues where all teams play each other, accumulating points for wins and draws. Manage the standings, goals scored and conceded, and goal difference to crown the champion at the end of the season.</string>
+    <string name="content_desc_pontos_corridos">Round Robin image</string>
+    <string name="footer_text">FutSim © 2025 - All rights reserved</string>
 </resources>

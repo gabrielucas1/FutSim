@@ -14,10 +14,41 @@
     <string name="tipo_fase_grupos">Fase de Grupos</string>
     <string name="tipo_pontos_corridos">Pontos Corridos</string>
     <string name="tipo_nao_definido">Tipo não definido</string>
+
+    <!--strings para tela_CriandoCamp.kt -->
     <string name="novo_campeonato_titulo">Novo Campeonato</string>
     <string name="nome_campeonato_obrigatorio_erro">O nome do campeonato é obrigatório</string>
     <string name="selecione_formato">Selecione o formato</string>
     <string name="desc_pontos_corridos">Liga onde todos jogam contra todos.</string>
     <string name="desc_mata_mata">Torneio eliminatório até a final.</string>
     <string name="desc_fase_grupos">Grupos com classificação para o mata-mata.</string>
+
+    <!--strings para tela_FaseGrupos.kt -->
+    <string name="adicionar_novo_time">Adicionar Novo Time</string>
+    <string name="nome_do_time">Nome do Time</string>
+    <string name="vitorias_abreviado">V</string>
+    <string name="empates_abreviado">E</string>
+    <string name="derrotas_abreviado">D</string>
+    <string name="gols_pro_abreviado">GP</string>
+    <string name="gols_contra_abreviado">GC</string>
+    <string name="salvar_time">Salvar Time</string>
+    <string name="time_adicionado_sucesso">Time adicionado com sucesso!</string>
+    <string name="preencha_campos_corretamente">Preencha todos os campos corretamente.</string>
+    <string name="tabela_posicao_abreviado">#</string>
+    <string name="tabela_time">Time</string>
+    <string name="tabela_pontos_abreviado">Pts</string>
+    <string name="tabela_jogos_abreviado">PJ</string>
+    <string name="tabela_saldo_gols_abreviado">SG</string>
+
+    <!--strings para tela_inicial.kt -->
+    <string name="info_section_title_1">Monte seus próprios campeonatos de futebol!</string>
+    <string name="info_section_desc_1">Simule mata-mata, pontos corridos e acompanhe tudo direto do celular. Fácil, rápido e divertido!</string>
+    <string name="content_desc_apresentacao">Imagem de apresentação</string>
+    <string name="info_section_title_mata_mata">Campeonatos Mata-Mata</string>
+    <string name="info_section_desc_mata_mata">Simule torneios eliminatórios, como copas e ligas com fases de playoff. Acompanhe o chaveamento, resultados e o avanço dos times até a grande final!</string>
+    <string name="content_desc_mata_mata">Imagem de mata mata</string>
+    <string name="info_section_title_pontos_corridos">Campeonatos de Pontos Corridos</string>
+    <string name="info_section_desc_pontos_corridos">Crie ligas onde todos os times se enfrentam, acumulando pontos por vitória e empate. Gerencie a tabela de classificação, gols marcados e sofridos, e o saldo de gols para coroar o campeão ao final da temporada.</string>
+    <string name="content_desc_pontos_corridos">Imagem de Pontos Corridos</string>
+    <string name="footer_text">FutSim © 2025 - Todos os direitos reservados</string>
 </resources>
