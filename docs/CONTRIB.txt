@@ -1,0 +1,944 @@
+commit a50244a01901dd4d75bdc48683de3847f939575a
+Merge: 5d28d57 70f24d9
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 17:08:50 2025 -0300
+
+    On Gabriel: teste
+
+commit 70f24d99496412cc1452f38b31ca2ae6c09132f0
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 17:08:50 2025 -0300
+
+    index on Gabriel: 5d28d57 refactor(navbar): Ajustado a navegação dos botoes do navbar.
+
+commit 6cd14efc85801f3b40ce38149ece3fd238dc42d3
+Merge: 095ec41 8228ffa
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jul 3 16:58:44 2025 -0300
+
+    Merge pull request #13 from Luiz-Andalezio/Jussie
+    
+    feat(Strings):
+
+commit 8228ffab3ef296b0b158f544b2b237f3d6b161f7
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 16:45:05 2025 -0300
+
+    feat(Strings):
+    Implementa string resources na tela de pontos corridos
+
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt | 62 +++++++++++-----------
+ app/src/main/res/values-en/strings.xml             | 13 +++++
+ app/src/main/res/values/strings.xml                | 13 +++++
+ local.properties                                   | 24 ---------
+ 4 files changed, 57 insertions(+), 55 deletions(-)
+
+commit 095ec41c173656f59270fcbdcafab6377c707121
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jul 3 15:46:23 2025 -0300
+
+    test(test):
+    rebase test
+
+ .idea/workspace.xml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 25e779f4977b7ec2bffd621c7fcdb45b73f73bb2
+Merge: 639ce75 e5a7601
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jul 3 15:41:11 2025 -0300
+
+    Merge pull request #12 from Luiz-Andalezio/Gabriel
+    
+    FIX(navbar)
+
+commit e5a7601da51ffa8b83739c4ce78c44ff8cfc8556
+Merge: 5d28d57 639ce75
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jul 3 15:40:14 2025 -0300
+
+    Merge branch 'main' into Gabriel
+
+commit 639ce756a998facd94d1417271f1985402b7d9c9
+Merge: b4dcb5c f8c0e03
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jul 3 15:00:07 2025 -0300
+
+    Merge pull request #11 from Luiz-Andalezio/Jussie
+    
+    Jussie
+
+commit f8c0e034b5e5f551b3d368dcbd4a658fb149b669
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 14:29:52 2025 -0300
+
+    feat(String values):
+    coloca strings traduzidas para o mata mata em inglês e portugês
+
+ .idea/workspace.xml                                | 15 ++---
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   | 70 +++++++++++-----------
+ app/src/main/res/values-en/strings.xml             | 27 +++++++++
+ app/src/main/res/values/strings.xml                | 27 +++++++++
+ 4 files changed, 95 insertions(+), 44 deletions(-)
+
+commit d107480dc00c15acf8e045d8251fe68b63bd3a30
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 14:28:27 2025 -0300
+
+    fix(redirecionamneto):
+    corrige o redirecionamnto do card dos campeonatos criados
+
+ app/src/main/java/com/example/futsim/ui/telas/tela_CampCriados.kt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit b4dcb5cd1660bcd922392b2cbd027a05808e7797
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 12:53:56 2025 -0300
+
+     Alteração dos valores de String das telas inicial e fase de grupos
+
+ .../com/example/futsim/ui/telas/tela_FaseGrupos.kt | 39 ++++++++++++----------
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 26 +++++++--------
+ app/src/main/res/values-en/strings.xml             | 31 +++++++++++++++++
+ app/src/main/res/values/strings.xml                | 31 +++++++++++++++++
+ 4 files changed, 96 insertions(+), 31 deletions(-)
+
+commit b9e0005e2c1ad1a34aca28e5dacc3cfc558bd0f9
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 11:31:58 2025 -0300
+
+    Alteração da String values da tela de criar campeonatos
+
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 28 ++++++++++++----------
+ app/src/main/res/values-en/strings.xml             |  6 +++++
+ app/src/main/res/values/strings.xml                |  6 +++++
+ 3 files changed, 27 insertions(+), 13 deletions(-)
+
+commit d130e815608ffd98bbcd63294b54ed123e32170a
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Thu Jul 3 11:21:42 2025 -0300
+
+    Alteração Values String
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 32 ++++++++++------------
+ app/src/main/res/values-en/strings.xml             |  6 +++-
+ app/src/main/res/values/strings.xml                |  6 +++-
+ local.properties                                   |  4 +--
+ 4 files changed, 26 insertions(+), 22 deletions(-)
+
+commit 5d28d571f32e34024c46285e88e3c98920cfcbac
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 04:55:15 2025 -0300
+
+    refactor(navbar):
+    Ajustado a navegação dos botoes do navbar.
+
+ .idea/deploymentTargetSelector.xml                 |  2 +-
+ .idea/studiobot.xml                                |  6 --
+ .idea/workspace.xml                                | 43 +++++++-----
+ .../main/java/com/example/futsim/MainActivity.kt   | 80 ++++++++++++++--------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 32 +++++----
+ .../com/example/futsim/ui/telas/tela_FaseGrupos.kt | 31 ++++++---
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   | 13 ++++
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt | 18 +++++
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 12 +++-
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt | 52 +++++++++++---
+ local.properties                                   |  3 +-
+ 11 files changed, 205 insertions(+), 87 deletions(-)
+
+commit 6c11b559731189b72726ac69e7867cb9d21210ec
+Merge: cd5f504 c986b17
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jul 3 00:59:17 2025 -0300
+
+    Merge pull request #10 from Luiz-Andalezio/Gabriel
+    
+    Estilização da Tela de Criação de Campeonatos
+
+commit c986b17cfae5529afee677cfacc193295cfa8472
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 00:46:15 2025 -0300
+
+    style(Tela_CriandoCamp):
+    Aprimora a estilização da tela de criação de campeonato.
+
+ .idea/workspace.xml                                | 48 ++++++++++++----------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    |  1 -
+ 2 files changed, 27 insertions(+), 22 deletions(-)
+
+commit 91c280bbbc5d867491308289d38e490057b45d34
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 00:13:42 2025 -0300
+
+    style(tela_CriandoCamp):
+    Deixando a tela de criar campeoanto mais estilizada.
+
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 159 ++++++++++++++-------
+ 1 file changed, 106 insertions(+), 53 deletions(-)
+
+commit f53e0f26d784edb4eefe82b25602627736e207f4
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Thu Jul 3 00:13:42 2025 -0300
+
+    style(tela_CriandoCamp):
+    Deixando a tela de criar campeoanto mais estilizada.
+
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 159 ++++++++++++++-------
+ 1 file changed, 106 insertions(+), 53 deletions(-)
+
+commit cd5f5045711388c15d64e7e7193dfc6be25937c1
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Thu Jul 3 00:09:05 2025 -0300
+
+    Estilizando PontosCorridos pt2
+
+ .idea/workspace.xml                                |   2 +-
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt | 349 ++++++++++-----------
+ 2 files changed, 167 insertions(+), 184 deletions(-)
+
+commit 5bfe869e89ccb059c3cb05e258129e2121c4bd83
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Wed Jul 2 23:41:05 2025 -0300
+
+    Novas Features no Mata-Mata
+    
+    Botao para finalizar partida, e redirecionamento entre fases do mata-mata
+
+ .idea/workspace.xml                                |   9 --
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   | 120 +++++++++++++--------
+ 2 files changed, 77 insertions(+), 52 deletions(-)
+
+commit c50deedb68f138e9501922b099b8957df379de0e
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Wed Jul 2 23:19:08 2025 -0300
+
+    Funcionalidade Mata-Mata(Com Persistentencia)
+
+ .idea/workspace.xml                                |  15 +-
+ app/build.gradle.kts                               |   5 +
+ .../main/java/com/example/futsim/MainActivity.kt   |  23 +-
+ .../java/com/example/futsim/data/FutSimDatabase.kt |  10 +-
+ .../com/example/futsim/data/FutSimRepository.kt    |   8 +-
+ .../com/example/futsim/data/MataMataStateDao.kt    |  18 +
+ .../java/com/example/futsim/model/MataMataState.kt |  11 +
+ .../example/futsim/ui/telas/tela_CampCriados.kt    |   3 +-
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   | 558 ++++++---------------
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt |  54 +-
+ local.properties                                   |   4 +-
+ 11 files changed, 279 insertions(+), 430 deletions(-)
+
+commit cb7e29e39eefd379e8c56094c7a2f2d9f78ffced
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Wed Jul 2 22:18:10 2025 -0300
+
+    Configs Mata-Mata (Sem Persistencia)
+
+ .idea/workspace.xml                                |  56 +-
+ .../example/futsim/ui/telas/tela_CampCriados.kt    |   7 +-
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   | 843 ++++++++++++++++++++-
+ 3 files changed, 834 insertions(+), 72 deletions(-)
+
+commit a9431ffc00d3fec7de11fbe783d7aaf2d8f7a590
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Wed Jul 2 17:04:18 2025 -0300
+
+    alteração na tela inicial
+
+ .../com/example/futsim/ui/telas/tela_inicial.kt    |  54 +++++++++++++--------
+ app/src/main/res/drawable/chuteirabolatrofeu.png   | Bin 0 -> 2219709 bytes
+ 2 files changed, 35 insertions(+), 19 deletions(-)
+
+commit 3547da443d84890ff421b501c84da91d9942b246
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Wed Jul 2 16:27:09 2025 -0300
+
+    Adicionando imagens na tela principal
+
+ .idea/workspace.xml                                |   3 --
+ .../com/example/futsim/ui/telas/tela_inicial.kt    |  32 +++++++++++++++++++++
+ .../main/java/com/example/futsim/ui/theme/Color.kt |   2 +-
+ app/src/main/res/drawable/imgfasegrupos.png        | Bin 0 -> 3411204 bytes
+ app/src/main/res/drawable/imgmatamata.png          | Bin 0 -> 2985676 bytes
+ app/src/main/res/drawable/pontoscorridos.png       | Bin 0 -> 3853271 bytes
+ 6 files changed, 33 insertions(+), 4 deletions(-)
+
+commit e94bbdb43deb97c90a7857b57ebb73dda91d019e
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Wed Jul 2 14:48:33 2025 -0300
+
+    Criação da estrutura da landing page (tela inicial)
+
+ .idea/caches/deviceStreaming.xml                   | 77 +++++++++++++++++++
+ .idea/misc.xml                                     |  1 -
+ .idea/workspace.xml                                | 61 ++++-----------
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 87 ++++++++++++++++++----
+ local.properties                                   |  4 +-
+ 5 files changed, 166 insertions(+), 64 deletions(-)
+
+commit ce8e39fcb9563dfee9418bb7f9b4ee55b9ff8861
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Tue Jul 1 23:31:56 2025 -0300
+
+    Reestruturando o visual do app
+
+ .idea/assetWizardSettings.xml                      | 299 +++++++++++++++++++++
+ .idea/caches/deviceStreaming.xml                   | 117 +++-----
+ .idea/misc.xml                                     |   3 +-
+ .idea/workspace.xml                                |  64 +++--
+ .kotlin/errors/errors-1751418488540.log            |   4 +
+ app/build.gradle.kts                               |   2 +
+ app/src/main/AndroidManifest.xml                   |   2 +-
+ app/src/main/ic_launcher-playstore.png             | Bin 0 -> 77810 bytes
+ .../main/java/com/example/futsim/MainActivity.kt   |   5 +-
+ .../futsim/ui/componentes/BotaoUniversal.kt        |  29 +-
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 104 ++++---
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt |  70 +++--
+ .../com/example/futsim/ui/telas/tela_inicial.kt    |  38 +--
+ .../com/example/futsim/ui/telas/tela_principal.kt  |  36 +--
+ .../main/java/com/example/futsim/ui/theme/Color.kt |  20 +-
+ .../main/java/com/example/futsim/ui/theme/Theme.kt |  56 ++--
+ .../main/java/com/example/futsim/ui/theme/Type.kt  |  36 ++-
+ app/src/main/res/drawable/futsim.png               | Bin 0 -> 42935 bytes
+ app/src/main/res/drawable/futsimicon.png           | Bin 0 -> 33616 bytes
+ .../main/res/drawable/ic_launcher_background.xml   | 236 +++++-----------
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   5 +
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   5 +
+ app/src/main/res/mipmap-anydpi/ic_launcher.xml     |   6 -
+ .../main/res/mipmap-anydpi/ic_launcher_round.xml   |   6 -
+ app/src/main/res/mipmap-hdpi/ic_launcher.webp      | Bin 1404 -> 2798 bytes
+ .../res/mipmap-hdpi/ic_launcher_foreground.webp    | Bin 0 -> 5070 bytes
+ .../main/res/mipmap-hdpi/ic_launcher_round.webp    | Bin 2898 -> 4722 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.webp      | Bin 982 -> 1692 bytes
+ .../res/mipmap-mdpi/ic_launcher_foreground.webp    | Bin 0 -> 2900 bytes
+ .../main/res/mipmap-mdpi/ic_launcher_round.webp    | Bin 1772 -> 2862 bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.webp     | Bin 1900 -> 3936 bytes
+ .../res/mipmap-xhdpi/ic_launcher_foreground.webp   | Bin 0 -> 7426 bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.webp   | Bin 3918 -> 6760 bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.webp    | Bin 2884 -> 7026 bytes
+ .../res/mipmap-xxhdpi/ic_launcher_foreground.webp  | Bin 0 -> 11460 bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.webp  | Bin 5914 -> 11092 bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp   | Bin 3844 -> 9906 bytes
+ .../res/mipmap-xxxhdpi/ic_launcher_foreground.webp | Bin 0 -> 17176 bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.webp | Bin 7778 -> 15972 bytes
+ app/src/main/res/values/colors.xml                 |   1 +
+ app/src/main/res/values/ic_launcher_background.xml |   4 +
+ app/src/main/res/values/themes.xml                 |   8 +
+ gradle/libs.versions.toml                          |   2 +-
+ local.properties                                   |  20 +-
+ 44 files changed, 702 insertions(+), 476 deletions(-)
+
+commit edd70ac27d28871dc25e3f152c9fbf02a4f3a3c6
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 16:24:56 2025 -0300
+
+    build(xml):
+    atualiza o workspace.xml
+
+ .idea/workspace.xml | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+commit e6d6688c5c4ef02ac62b85ee45b2472a3ed96e72
+Merge: 1734e02 266b2e3
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Wed Jun 25 16:29:41 2025 -0300
+
+    Merge pull request #9 from Luiz-Andalezio/luiz
+    
+    Feats para a Tabela Pontos Corridos
+
+commit 266b2e3671a4668acd02c149b6b9960067991009
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 16:24:56 2025 -0300
+
+    build(xml):
+    atualiza o workspace.xml
+
+ .idea/workspace.xml | 6 ------
+ 1 file changed, 6 deletions(-)
+
+commit cdcbdf3a4a46284bb63ba3fa944f0760cfa96037
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 16:23:53 2025 -0300
+
+    feat(table):
+    implementa rolagem horizontal para o nome dos times na tabela de pontos corridos
+
+ .../com/example/futsim/ui/telas/tela_PontosCorridos.kt   | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+commit 2a2c824e2934fbf4aba3e97ab87ee613dfe50ae6
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 15:33:58 2025 -0300
+
+    style(ui):
+    melhora a ui da tera de criação de campenato
+
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 133 +++++++++++++++++++++
+ 1 file changed, 133 insertions(+)
+
+commit dee86443350b26ff4888e7c443575529efc789bf
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 15:33:04 2025 -0300
+
+    feat(CRUD):
+    adiciona um sistema CRUD para os times nas tabelas de pontos corridos
+
+ .idea/caches/deviceStreaming.xml                   |  24 +-
+ .idea/workspace.xml                                |  19 +-
+ app/build.gradle.kts                               |   4 +-
+ .../com/example/futsim/data/FutSimRepository.kt    |   7 +-
+ .../main/java/com/example/futsim/data/TimeDao.kt   |   4 +-
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 151 --------
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt | 378 +++++++++++++--------
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt |  14 +
+ 8 files changed, 273 insertions(+), 328 deletions(-)
+
+commit b49cd50fc80cafd14d12b5c6287d5a28eea04e17
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 25 14:09:13 2025 -0300
+
+    build(sdk):
+    adiciona a sdk dir de todos os desenvolvedores para evitar erros de SDK location not found
+
+ local.properties | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+commit 1734e029c8cbb47dfcfc9cb455697e5406dc1df4
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Mon Jun 16 18:28:56 2025 -0300
+
+    Inserindo botao de navegação
+
+ .idea/deploymentTargetSelector.xml                 |   2 +-
+ .idea/studiobot.xml                                |   6 +
+ .idea/workspace.xml                                |  50 ++-
+ app/build.gradle.kts                               |   5 +-
+ .../main/java/com/example/futsim/BottomNavItem.kt  |  20 +
+ .../main/java/com/example/futsim/MainActivity.kt   |  91 ++++-
+ .../main/java/com/example/futsim/data/TimeDao.kt   |   1 +
+ .../example/futsim/ui/telas/tela_CampCriados.kt    |  25 +-
+ .../com/example/futsim/ui/telas/tela_principal.kt  |   9 -
+ .../java/com/example/futsim/ui/telas/tela_teste.kt | 415 +++++++++++----------
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt |   2 +
+ gradle/libs.versions.toml                          |   3 +-
+ local.properties                                   |   6 +-
+ 13 files changed, 358 insertions(+), 277 deletions(-)
+
+commit 25df10fa1a9cb21a1d53cddabbb026a3c5ae4ae8
+Merge: 6b9dcbe 215f73f
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Mon Jun 9 17:37:22 2025 -0300
+
+    Merge pull request #8 from Luiz-Andalezio/dev
+    
+    Campeonatos e Pontos Corridos
+
+commit 215f73f09b508f310d8fb4744b9266cc70bafd61
+Merge: b44b28d 2e30121
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Mon Jun 9 17:35:37 2025 -0300
+
+    feat(merge):
+    merge luiz para dev
+
+commit 2e3012104df445e801a54de2daeb35f9c63e65ab
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Mon Jun 9 17:31:49 2025 -0300
+
+    feat(tabela pontos corridos):
+    implementa a tabela de pontos corridos para cada campeonato criado
+
+ .idea/caches/deviceStreaming.xml                   |  69 +++++-
+ .idea/workspace.xml                                |  17 +-
+ app/build.gradle.kts                               |   9 +-
+ .../main/java/com/example/futsim/MainActivity.kt   |   9 +-
+ .../java/com/example/futsim/data/FutSimDatabase.kt |   2 +-
+ .../com/example/futsim/data/FutSimRepository.kt    |   1 +
+ .../main/java/com/example/futsim/data/TimeDao.kt   |   2 +
+ app/src/main/java/com/example/futsim/model/Time.kt |   8 +-
+ .../java/com/example/futsim/model/TimeTabela.kt    |  16 ++
+ .../example/futsim/ui/telas/tela_CampCriados.kt    |   3 +
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    |   2 +-
+ .../com/example/futsim/ui/telas/tela_FaseGrupos.kt |  58 ++---
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt | 245 ++++++++++++++++++---
+ .../java/com/example/futsim/ui/telas/tela_teste.kt |   2 +-
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt |  46 ++--
+ 15 files changed, 370 insertions(+), 119 deletions(-)
+
+commit 00de72a2777fc327c97b0adc86a206ead7b9b720
+Merge: 4535662 3103c1e
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Mon Jun 9 15:56:49 2025 -0300
+
+    feat(merge):
+    cria o merge que contem os testes da tela de pontos corridos
+
+commit 4535662dfbfc8e7fa33b7cd24fc682a37a143f36
+Merge: b067b57 16a0823
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Mon Jun 9 15:49:51 2025 -0300
+
+    build(pull xml):
+    corrige pull
+
+commit b067b570cbbd42406d9a7087a3ab233c6eb7ca27
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:18:59 2025 -0300
+
+    build(workspace.xml):
+    atualiza o xml
+
+ .idea/workspace.xml | 32 +++++++++++++++++---------------
+ 1 file changed, 17 insertions(+), 15 deletions(-)
+
+commit 6d35fd1a8533d67b0150ca4e493dbd916a48f5d2
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:18:08 2025 -0300
+
+    feat(redirecionamentos):
+    após a criação do campeonato, redireciona para a tela de campeonatos criados, onde também foi inserido um botão de ida para o menu principal
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 94 ++++++++++++----------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    |  7 +-
+ 2 files changed, 54 insertions(+), 47 deletions(-)
+
+commit 11787a06e4d2aa92d3f574b9ab56a16f09864195
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:11:25 2025 -0300
+
+    feat(editar campeonatos):
+    lista os campeonatos junto com as opções funcionais de edição e exclusão
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 111 +++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+
+commit 039317bd1bdadfb3f98984549c677e8358c6c62a
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:10:21 2025 -0300
+
+    feat(criar campeonatos):
+    possibilita a criação de campeonatos com persistência de dados no back-end
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 93 ----------------------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 26 +++---
+ 2 files changed, 10 insertions(+), 109 deletions(-)
+
+commit 6b9dcbe9740aa712a9b54b49bdfecbbe8a62f0c6
+Merge: ea298d8 b44b28d
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Fri Jun 6 14:27:00 2025 -0300
+
+    Merge pull request #6 from Luiz-Andalezio/dev
+    
+    Persistência de Dados dos Campeonatos: Juntamente da tela de criação e listagem de campeonatos, implementa a persistência de dados ao criar, editar, e excluir os objetos.
+
+commit b44b28da932c780fde02e03c17a3b98b76c890e1
+Merge: 5200145 16a0823
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:22:55 2025 -0300
+
+    feat(merge):
+    merge com a branch luiz
+
+commit 16a08230f310c70ea174f032b599af6278847cd3
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:18:59 2025 -0300
+
+    build(workspace.xml):
+    atualiza o xml
+
+ .idea/workspace.xml | 33 ++++++++++++++++++---------------
+ 1 file changed, 18 insertions(+), 15 deletions(-)
+
+commit 4ce1b313a9c30590ab3d1b8ef85a87b9ef4405f1
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:18:08 2025 -0300
+
+    feat(redirecionamentos):
+    após a criação do campeonato, redireciona para a tela de campeonatos criados, onde também foi inserido um botão de ida para o menu principal
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 94 ++++++++++++----------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    |  7 +-
+ 2 files changed, 54 insertions(+), 47 deletions(-)
+
+commit f982e1c3bf5defc6121314c5650bd03ac3b21daa
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:11:25 2025 -0300
+
+    feat(editar campeonatos):
+    lista os campeonatos junto com as opções funcionais de edição e exclusão
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 111 +++++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+
+commit cb8781d58e66a497b13f876e6eb4ee4f81928560
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri Jun 6 14:10:21 2025 -0300
+
+    feat(criar campeonatos):
+    possibilita a criação de campeonatos com persistência de dados no back-end
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 93 ----------------------
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 26 +++---
+ 2 files changed, 10 insertions(+), 109 deletions(-)
+
+commit ea298d83c7adf42260df06f2307b526c5480a405
+Merge: b31a8ed 5200145
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Thu Jun 5 16:00:33 2025 -0300
+
+    Merge pull request #5 from Luiz-Andalezio/dev
+    
+    Build, Data, Testes e ViewModel
+
+commit 5200145bbe3044f0c9d07905de26a4f85e8c1df2
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jun 5 15:46:10 2025 -0300
+
+    build(gradle):
+    aprimora as configurações de build e dependências
+
+ .idea/workspace.xml  | 16 ++++------------
+ app/build.gradle.kts |  1 +
+ 2 files changed, 5 insertions(+), 12 deletions(-)
+
+commit 05f6f10971f3975ae31f3c313054ca0afdeb7c89
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jun 5 15:46:10 2025 -0300
+
+    build(gradle):
+    aprimora as configurações de build e dependências
+
+ .idea/workspace.xml  | 16 ++++------------
+ app/build.gradle.kts |  1 +
+ 2 files changed, 5 insertions(+), 12 deletions(-)
+
+commit 82dd0be31164863513846eafc224d4fb2a2ad8b4
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jun 5 15:45:35 2025 -0300
+
+    feat(strings):
+    adiciona strings
+
+ app/src/main/res/values-en/strings.xml | 13 +++++++++++++
+ app/src/main/res/values/strings.xml    | 13 +++++++++++++
+ 2 files changed, 26 insertions(+)
+
+commit 1c0894205cd0c1fcf59b67a800aaadd45122ecc5
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jun 5 15:44:36 2025 -0300
+
+    test(viewmodel):
+    adiciona os primeiros testes de viewmodel
+
+ .../main/java/com/example/futsim/MainActivity.kt   |  4 +-
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 93 ++++++++++++++++++++++
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 17 ++--
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt |  7 +-
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 10 ++-
+ .../com/example/futsim/ui/telas/tela_principal.kt  |  5 +-
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt | 14 ++++
+ .../futsim/ui/viewmodel/LocalFutSimViewModel.kt    |  7 ++
+ 8 files changed, 133 insertions(+), 24 deletions(-)
+
+commit fb0ff09b101e79debb4f99884e850697dd821c9a
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Thu Jun 5 14:05:38 2025 -0300
+
+    build(gradle):
+    implements kapt dependencies
+
+ .idea/caches/deviceStreaming.xml                   | 84 ++++++++++++++++++++++
+ .idea/workspace.xml                                | 13 +++-
+ .vscode/settings.json                              |  3 +
+ app/build.gradle.kts                               |  4 ++
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 51 -------------
+ app/src/main/res/values-en/strings.xml             |  7 --
+ app/src/main/res/values/strings.xml                |  7 --
+ build.gradle.kts                                   |  6 --
+ 8 files changed, 101 insertions(+), 74 deletions(-)
+
+commit bdbfb835e2abce4735623cf97b8da3d99f155b65
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 4 17:35:00 2025 -0300
+
+    feat(model):
+    adiciona o model campeonato
+
+ app/src/main/java/com/example/futsim/model/Campeonato.kt | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+commit 3562159839554213456cace9ad1ef2ee98c2fe78
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 4 17:34:27 2025 -0300
+
+    build(test):
+    adiciona testes de build
+
+ .idea/workspace.xml                                |  4 +-
+ .../main/java/com/example/futsim/MainActivity.kt   | 74 +++++++++++-----------
+ .../java/com/example/futsim/model/Campeonato.kt    |  8 ---
+ .../main/java/com/example/futsim/model/Partida.kt  | 15 +++++
+ app/src/main/java/com/example/futsim/model/Time.kt | 10 +++
+ .../example/futsim/ui/viewmodel/FutSimViewModel.kt | 61 ++++++++++++++++++
+ .../futsim/ui/viewmodel/FutSimViewModelFactory.kt  | 17 +++++
+ app/src/main/res/values-en/strings.xml             |  7 ++
+ app/src/main/res/values/strings.xml                |  4 ++
+ build.gradle.kts                                   |  6 ++
+ local.properties                                   |  4 +-
+ 11 files changed, 160 insertions(+), 50 deletions(-)
+
+commit 01f13f94e0c5cb8e0c2317d472465bbf86e192b2
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 4 17:33:08 2025 -0300
+
+    feat(telas):
+    implementa o uso de viewmodel nas telas
+
+ .../example/futsim/ui/telas/tela_CampCriados.kt    | 55 +++++++++++++++++-----
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 10 ++--
+ .../com/example/futsim/ui/telas/tela_FaseGrupos.kt |  7 ++-
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   |  8 +++-
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt |  7 ++-
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 27 ++++++-----
+ .../com/example/futsim/ui/telas/tela_principal.kt  | 53 ++++++++++-----------
+ 7 files changed, 107 insertions(+), 60 deletions(-)
+
+commit 1b36c370eb79d09de3649e6f42882bf31124a482
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Wed Jun 4 17:31:59 2025 -0300
+
+    feat(data):
+    implements first data archives
+
+ .../java/com/example/futsim/data/CampeonatoDao.kt  | 12 ++++++++++
+ .../java/com/example/futsim/data/Converters.kt     | 12 ++++++++++
+ .../java/com/example/futsim/data/FutSimDatabase.kt | 17 +++++++++++++
+ .../com/example/futsim/data/FutSimRepository.kt    | 28 ++++++++++++++++++++++
+ .../java/com/example/futsim/data/PartidaDao.kt     | 13 ++++++++++
+ .../main/java/com/example/futsim/data/TimeDao.kt   | 11 +++++++++
+ 6 files changed, 93 insertions(+)
+
+commit 7c67413a7fbe94d87de13ba6432e2f6fa298af1c
+Merge: a55b9de b31a8ed
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Tue Jun 3 14:26:09 2025 -0300
+
+    feat(merge):
+    others implementations
+
+commit a55b9de0a7e8c6064577d2685f20519ab86ebfcf
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Tue Jun 3 14:09:30 2025 -0300
+
+    build(idea):
+    saves local changes after pulling
+
+ .idea/caches/deviceStreaming.xml             | 96 ++++++++++++++++++++++++----
+ .idea/gradle.xml                             |  1 +
+ .idea/inspectionProfiles/Project_Default.xml | 61 ++++++++++++++++++
+ .idea/workspace.xml                          | 50 +++++++--------
+ 4 files changed, 170 insertions(+), 38 deletions(-)
+
+commit b31a8ed1ba9ab61c3a3376c8ef47d762aff8962f
+Merge: 4d2f5c0 7959d22
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Mon Jun 2 19:42:21 2025 -0300
+
+    Merge pull request #4 from jussie-lopes23/Dev
+    
+    Alterações nas telas de campeonatos
+
+commit 7959d2280798b7f41d726d21ecaf9659235c2250
+Author: jussie-lopes23 <152648620+jussie-lopes23@users.noreply.github.com>
+Date:   Mon May 26 15:40:12 2025 -0300
+
+    Alterações nas telas de campeonatos
+
+ ".idea/FutSimVers\303\243o1.0.iml"                 |   9 +
+ .idea/caches/deviceStreaming.xml                   |  72 +++++--
+ .idea/compiler.xml                                 |   6 +
+ .idea/deploymentTargetSelector.xml                 |   8 +
+ .idea/gradle.xml                                   |   1 +
+ .idea/inspectionProfiles/Project_Default.xml       |  61 ++++++
+ .idea/misc.xml                                     |   1 -
+ .idea/workspace.xml                                | 114 +++++++++---
+ README.md                                          |   6 +-
+ .../main/java/com/example/futsim/MainActivity.kt   |  54 +++---
+ .../example/futsim/data/CampeonatoRepository.kt    |   8 +
+ .../java/com/example/futsim/model/Campeonato.kt    |   8 +
+ .../com/example/futsim/model/TipoCampeonato.kt     |   8 +
+ .../futsim/ui/componentes/BotaoUniversal.kt        |  34 ++++
+ .../example/futsim/ui/telas/tela_CampCriados.kt    |  22 +++
+ .../example/futsim/ui/telas/tela_CriandoCamp.kt    | 163 ++++++++++++++++
+ .../com/example/futsim/ui/telas/tela_FaseGrupos.kt | 206 +++++++++++++++++++++
+ .../com/example/futsim/ui/telas/tela_MataMata.kt   |  67 +++++++
+ .../example/futsim/ui/telas/tela_PontosCorridos.kt |  58 ++++++
+ .../com/example/futsim/ui/telas/tela_inicial.kt    |  37 ++--
+ .../com/example/futsim/ui/telas/tela_principal.kt  |  40 +++-
+ .../java/com/example/futsim/ui/telas/tela_teste.kt |  26 ---
+ .../main/java/com/example/futsim/ui/theme/Color.kt |   8 +-
+ gradle/libs.versions.toml                          |   2 +-
+ local.properties                                   |   4 +-
+ 25 files changed, 908 insertions(+), 115 deletions(-)
+
+commit 3103c1e2ae0df7544a56cd944bc421b337fe75d9
+Author: VitorGabrielRLO <117090297+VitorGabrielRLO@users.noreply.github.com>
+Date:   Sat May 24 17:26:46 2025 -0300
+
+    Criando tabela de times
+    
+    Criando tela para criação de tabelas de times
+
+ .idea/caches/deviceStreaming.xml                   | 126 ++++++-------
+ .idea/codeStyles/Project.xml                       | 123 ++++++++++++
+ .idea/codeStyles/codeStyleConfig.xml               |   5 +
+ .idea/compiler.xml                                 |   6 +
+ .idea/gradle.xml                                   |   2 +
+ .idea/misc.xml                                     |   3 +-
+ .idea/workspace.xml                                |  50 +++--
+ .../java/com/example/futsim/ui/telas/tela_teste.kt | 209 +++++++++++++++++++--
+ gradle/libs.versions.toml                          |   2 +-
+ local.properties                                   |   4 +-
+ 10 files changed, 420 insertions(+), 110 deletions(-)
+
+commit 4d2f5c064c1ffab957723a803f360d0810744a75
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Wed May 14 13:48:11 2025 -0300
+
+    docs(readme):
+    
+    Retira a sugestão do -am para o commit
+
+ README.md | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit ae88956dad1589c2b58bafd2f20b653ee998d574
+Merge: c75dd00 20d5461
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Mon May 12 18:34:14 2025 -0300
+
+    Merge pull request #3 from gabrielucas1/TCD-13
+    
+    fix(merge):
+
+commit 20d5461ebef13c7d2f8cad616a5dd91d7d509690
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Mon May 12 18:32:36 2025 -0300
+
+    fix(merge):
+    Adiciona as telas
+
+ .../com/example/futsim/ui/telas/tela_inicial.kt    | 26 ++++++++++++++++++++++
+ .../com/example/futsim/ui/telas/tela_principal.kt  | 25 +++++++++++++++++++++
+ .../java/com/example/futsim/ui/telas/tela_teste.kt | 26 ++++++++++++++++++++++
+ 3 files changed, 77 insertions(+)
+
+commit c75dd0074d886483b282fa871b5a1f0dec344d7c
+Merge: 9c26b77 660087e
+Author: Gabriel Lucas Silva Seabra <136409339+gabrielucas1@users.noreply.github.com>
+Date:   Mon May 12 18:23:44 2025 -0300
+
+    Merge pull request #2 from gabrielucas1/TCD-13
+    
+    test(screens):
+
+commit 660087e8c80feb55bf6bf6682352e3b7dc9320ee
+Author: Gabriel <gl9736387@gmail.com>
+Date:   Mon May 12 18:21:49 2025 -0300
+
+    test(screens):
+    Adiciona telas para o testes de navegação
+
+ app/build.gradle.kts                               |  1 +
+ .../main/java/com/example/futsim/MainActivity.kt   | 22 +++++++++++++++-------
+ gradle/libs.versions.toml                          |  2 ++
+ local.properties                                   |  8 +++-----
+ 4 files changed, 21 insertions(+), 12 deletions(-)
+
+commit 9c26b770e53e53f18d8608a939bb08dbfa2dfc0f
+Merge: eb88c86 075f50f
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Fri May 9 17:02:07 2025 -0300
+
+    Merge pull request #1 from Luiz-Andalezio/dev
+    
+    Primeira Build: Insere os primeiros códigos do padrão de build do Kotlin + Android Studio.
+
+commit 075f50ff1655b53d3ae2080cbce1b287b3affa22
+Author: Luiz-Andalezio <luizandalecio19@gmail.com>
+Date:   Fri May 9 16:12:24 2025 -0300
+
+    build(dependencies):
+    Insere os primeiros códigos do padrão de build do kotlin android studio
+
+ .idea/AndroidProjectSystem.xml                     |   6 +
+ .idea/caches/deviceStreaming.xml                   | 631 +++++++++++++++++++++
+ .idea/deploymentTargetSelector.xml                 |  10 +
+ .idea/gradle.xml                                   |  18 +
+ .idea/kotlinc.xml                                  |   6 +
+ .idea/migrations.xml                               |  10 +
+ .idea/misc.xml                                     |  10 +
+ .idea/runConfigurations.xml                        |  17 +
+ .idea/vcs.xml                                      |   6 +
+ .idea/workspace.xml                                | 143 +++++
+ app/.gitignore                                     |   1 +
+ app/build.gradle.kts                               |  59 ++
+ app/proguard-rules.pro                             |  21 +
+ .../com/example/futsim/ExampleInstrumentedTest.kt  |  24 +
+ app/src/main/AndroidManifest.xml                   |  28 +
+ .../main/java/com/example/futsim/MainActivity.kt   |  47 ++
+ .../main/java/com/example/futsim/ui/theme/Color.kt |  11 +
+ .../main/java/com/example/futsim/ui/theme/Theme.kt |  58 ++
+ .../main/java/com/example/futsim/ui/theme/Type.kt  |  34 ++
+ .../main/res/drawable/ic_launcher_background.xml   | 170 ++++++
+ .../main/res/drawable/ic_launcher_foreground.xml   |  30 +
+ app/src/main/res/mipmap-anydpi/ic_launcher.xml     |   6 +
+ .../main/res/mipmap-anydpi/ic_launcher_round.xml   |   6 +
+ app/src/main/res/mipmap-hdpi/ic_launcher.webp      | Bin 0 -> 1404 bytes
+ .../main/res/mipmap-hdpi/ic_launcher_round.webp    | Bin 0 -> 2898 bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.webp      | Bin 0 -> 982 bytes
+ .../main/res/mipmap-mdpi/ic_launcher_round.webp    | Bin 0 -> 1772 bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.webp     | Bin 0 -> 1900 bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.webp   | Bin 0 -> 3918 bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.webp    | Bin 0 -> 2884 bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.webp  | Bin 0 -> 5914 bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp   | Bin 0 -> 3844 bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.webp | Bin 0 -> 7778 bytes
+ app/src/main/res/values/colors.xml                 |  10 +
+ app/src/main/res/values/strings.xml                |   3 +
+ app/src/main/res/values/themes.xml                 |   5 +
+ app/src/main/res/xml/backup_rules.xml              |  13 +
+ app/src/main/res/xml/data_extraction_rules.xml     |  19 +
+ .../java/com/example/futsim/ExampleUnitTest.kt     |  17 +
+ build.gradle.kts                                   |   6 +
+ gradle.properties                                  |  23 +
+ gradle/libs.versions.toml                          |  32 ++
+ gradle/wrapper/gradle-wrapper.jar                  | Bin 0 -> 59203 bytes
+ gradle/wrapper/gradle-wrapper.properties           |   6 +
+ gradlew                                            | 185 ++++++
+ gradlew.bat                                        |  89 +++
+ local.properties                                   |  10 +
+ settings.gradle.kts                                |  23 +
+ 48 files changed, 1793 insertions(+)
+
+commit 911a96034e04e4ac580d02e05488a1bb2881e95a
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Fri May 9 15:35:52 2025 -0300
+
+    docs(readme):
+    
+    Esboça o README.md
+
+ README.md | 75 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 75 insertions(+)
+
+commit eb88c86bfdc3d8c49f04f56aa2d70a429a225ebd
+Author: Luiz Alberto Cury Andalécio <137120332+Luiz-Andalezio@users.noreply.github.com>
+Date:   Fri May 9 15:27:52 2025 -0300
+
+    Initial commit
+
+ .gitignore | 21 +++++++++++++++++++++
+ LICENSE    | 21 +++++++++++++++++++++
+ 2 files changed, 42 insertions(+)
