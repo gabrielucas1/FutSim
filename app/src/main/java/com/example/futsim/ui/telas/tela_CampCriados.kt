@@ -70,7 +70,13 @@ fun TelaCampCriados(navHostController: NavHostController) {
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .clickable {
-                        navHostController.navigate("tela_PontosCorridos/${campeonato.id}")
+                        when (campeonato.tipo) {
+                            // Navegação atualizada para passar o ID do campeonato
+                            TipoCampeonato.MATA_MATA -> navHostController.navigate("tela_MataMata/${campeonato.id}")
+                            TipoCampeonato.PONTOS_CORRIDOS -> navHostController.navigate("tela_PontosCorridos/${campeonato.id}")
+                            TipoCampeonato.FASE_GRUPOS -> navHostController.navigate("tela_FaseGrupos")
+                            else -> {}
+                        }
                     },
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
