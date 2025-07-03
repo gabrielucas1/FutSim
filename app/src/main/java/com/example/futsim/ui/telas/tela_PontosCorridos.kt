@@ -30,6 +30,9 @@ import com.example.futsim.model.TimeTabela
 import com.example.futsim.navigation.BottomNavItem
 import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
+import androidx.compose.ui.res.stringResource // Importação adicionada
+import com.example.futsim.R // Importação adicionada
+import androidx.annotation.StringRes // Importação adicionada
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,21 +77,21 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                 showAddOrEditDialog = false
                 limparCampos()
             },
-            title = { Text(if (timeSelecionado == null) "Adicionar Time" else "Editar Time") },
+            title = { Text(if (timeSelecionado == null) stringResource(R.string.adicionar_time_dialog_titulo) else stringResource(R.string.editar_time_dialog_titulo)) },
             text = {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedTextField(value = nome, onValueChange = { nome = it }, label = { Text("Nome do Time") })
+                    OutlinedTextField(value = nome, onValueChange = { nome = it }, label = { Text(stringResource(R.string.nome_do_time)) })
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text("V") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
-                        OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text("E") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
-                        OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text("D") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = vitorias, onValueChange = { vitorias = it }, label = { Text(stringResource(R.string.vitorias_abreviado)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = empates, onValueChange = { empates = it }, label = { Text(stringResource(R.string.empates_abreviado)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = derrotas, onValueChange = { derrotas = it }, label = { Text(stringResource(R.string.derrotas_abreviado)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text("GP") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
-                        OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text("GC") }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = golsPro, onValueChange = { golsPro = it }, label = { Text(stringResource(R.string.gols_pro_abreviado)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
+                        OutlinedTextField(value = golsContra, onValueChange = { golsContra = it }, label = { Text(stringResource(R.string.gols_contra_abreviado)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), modifier = Modifier.weight(1f))
                     }
                 }
-            },
+            }, ///
             confirmButton = {
                 Button(onClick = {
                     val camposValidos = nome.isNotBlank() && vitorias.toIntOrNull() != null && empates.toIntOrNull() != null && derrotas.toIntOrNull() != null && golsPro.toIntOrNull() != null && golsContra.toIntOrNull() != null
@@ -113,13 +116,13 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                     } else {
                         coroutineScope.launch { snackbarHostState.showSnackbar("Preencha todos os campos corretamente.") }
                     }
-                }) { Text("Salvar") }
+                }) { Text(stringResource(R.string.salvar)) }
             },
             dismissButton = {
                 OutlinedButton(onClick = {
                     showAddOrEditDialog = false
                     limparCampos()
-                }) { Text("Cancelar") }
+                }) { Text(stringResource(R.string.cancelar)) }
             }
         )
     }
@@ -132,8 +135,8 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                 limparCampos()
             },
             icon = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
-            title = { Text("Excluir Time?") },
-            text = { Text("Você tem certeza que deseja excluir o time \"${timeSelecionado?.nome}\"? Esta ação não pode ser desfeita.") },
+            title = { Text(stringResource(R.string.excluir_time_dialog_titulo)) },
+            text = { Text(stringResource(R.string.excluir_time_dialog_texto, timeSelecionado?.nome ?: "")) },
             confirmButton = {
                 Button(
                     onClick = {
@@ -143,13 +146,13 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                         limparCampos()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                ) { Text("Excluir") }
+                ) { Text(stringResource(R.string.excluir)) }
             },
             dismissButton = {
                 OutlinedButton(onClick = {
                     showDeleteDialog = false
                     limparCampos()
-                }) { Text("Cancelar") }
+                }) { Text(stringResource(R.string.cancelar)) }
             }
         )
     }
@@ -163,12 +166,12 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                 contentColor = Color.White,
                 shape = CircleShape
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Adicionar Time")
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.adicionar_time_content_desc))
             }
         },
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Pontos Corridos", fontWeight = FontWeight.Bold) },
+                title = { Text(stringResource(R.string.pontos_corridos_titulo), fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = {
                         navHostController.navigate(BottomNavItem.Campeonatos.route) {
@@ -176,7 +179,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                             launchSingleTop = true
                         }
                     }) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.voltar_content_desc))
                     }
                 }
             )
@@ -200,7 +203,7 @@ fun TelaPontosCorridos(navHostController: NavHostController, campeonatoId: Int) 
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        "Nenhum time adicionado ainda.\nClique no botão '+' para começar!",
+                        stringResource(R.string.nenhum_time_adicionado_mensagem),
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
@@ -252,14 +255,14 @@ fun HeaderTabelaPontosCorridos() {
         verticalAlignment = Alignment.CenterVertically
     ) {
         val headerStyle = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        Text("#", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("TIME", modifier = Modifier.weight(2f).padding(start = 8.dp), style = headerStyle)
-        Text("P", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("J", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("V", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("E", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("D", modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
-        Text("SG", modifier = Modifier.width(35.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.tabela_posicao_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.tabela_time), modifier = Modifier.weight(2f).padding(start = 8.dp), style = headerStyle)
+        Text(stringResource(R.string.tabela_pontos_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.tabela_jogos_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.vitorias_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.empates_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.derrotas_abreviado), modifier = Modifier.width(30.dp), style = headerStyle, textAlign = TextAlign.Center)
+        Text(stringResource(R.string.tabela_saldo_gols_abreviado), modifier = Modifier.width(35.dp), style = headerStyle, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.width(72.dp)) // Espaço para os botões de ação
     }
     Divider(color = MaterialTheme.colorScheme.outline)
@@ -272,8 +275,6 @@ fun LinhaTabelaPontosCorridos(
     onDeleteClick: () -> Unit
 ) {
     val position = time.posicao
-    // ✅ LÓGICA DE COR REMOVIDA
-    // A linha da tabela agora tem um fundo transparente por padrão.
     val isLeader = position == 1
 
     Row(
@@ -290,7 +291,6 @@ fun LinhaTabelaPontosCorridos(
             modifier = Modifier.width(30.dp),
             style = cellStyle,
             textAlign = TextAlign.Center,
-            // Apenas o líder fica em negrito
             fontWeight = if(isLeader) FontWeight.Bold else FontWeight.Normal
         )
         Text(
@@ -310,10 +310,10 @@ fun LinhaTabelaPontosCorridos(
 
         Row(modifier = Modifier.width(72.dp)) {
             IconButton(onClick = onEditClick, modifier = Modifier.size(36.dp)) {
-                Icon(Icons.Default.Edit, contentDescription = "Editar", tint = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.Edit, contentDescription = stringResource(R.string.editar), tint = MaterialTheme.colorScheme.primary)
             }
             IconButton(onClick = onDeleteClick, modifier = Modifier.size(36.dp)) {
-                Icon(Icons.Default.Delete, contentDescription = "Excluir", tint = MaterialTheme.colorScheme.error)
+                Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.excluir), tint = MaterialTheme.colorScheme.error)
             }
         }
     }
