@@ -32,14 +32,17 @@ import com.example.futsim.ui.viewmodel.LocalFutSimViewModel
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import java.util.*
+import androidx.compose.ui.res.stringResource // Importação adicionada
+import com.example.futsim.R // Importação adicionada
+import androidx.annotation.StringRes // Importação adicionada
 
 // --- DATA CLASSES E ENUMS ---
 @Serializable
-enum class FaseTorneio(val label: String, val confrontos: Int) {
-    OITAVAS("Oitavas de Final", 8),
-    QUARTAS("Quartas de Final", 4),
-    SEMIFINAIS("Semifinais", 2),
-    FINAL("Final", 1);
+enum class FaseTorneio(@StringRes val labelResId: Int, val confrontos: Int) { // Alterado para StringRes
+    OITAVAS(R.string.oitavas_final_label, 8), // Usando o ID do recurso
+    QUARTAS(R.string.quartas_final_label, 4),
+    SEMIFINAIS(R.string.semifinais_label, 2),
+    FINAL(R.string.final_label, 1);
 
     companion object {
         fun getNext(current: FaseTorneio): FaseTorneio? = when (current) {
@@ -137,13 +140,13 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text("Mata-Mata", fontWeight = FontWeight.Bold, fontSize = 22.sp) },
+                title = { Text(stringResource(R.string.mata_mata_titulo), fontWeight = FontWeight.Bold, fontSize = 22.sp) },
                 actions = {
                     IconButton(onClick = { showResetDialog = true }) {
-                        Icon(Icons.Default.Refresh, contentDescription = "Resetar Tabela")
+                        Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.resetar_tabela_btn))
                     }
                     IconButton(onClick = { showClearDialog = true }) {
-                        Icon(Icons.Default.Delete, contentDescription = "Limpar Tudo")
+                        Icon(Icons.Default.Delete, contentDescription = stringResource(R.string.limpar_tudo_btn))
                     }
                 }
             )
@@ -191,7 +194,7 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                         Tab(
                             selected = pagerState.currentPage == index,
                             onClick = { coroutineScope.launch { pagerState.animateScrollToPage(index) } },
-                            text = { Text(fase.label) }
+                            text = { Text(stringResource(fase.labelResId)) }
                         )
                     }
                 }
@@ -270,7 +273,7 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                                         },
                                         modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp)
                                     ) {
-                                        Text("Avançar para ${FaseTorneio.getNext(fase)?.label ?: ""}")
+                                        Text(stringResource(R.string.avancar_para_fase, stringResource(FaseTorneio.getNext(fase)?.labelResId ?: R.string.app_name)))
                                     }
                                 }
                             }
@@ -298,8 +301,8 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
     if (showResetDialog) {
         AlertDialog(
             onDismissRequest = { showResetDialog = false },
-            title = { Text("Resetar Torneio?") },
-            text = { Text("Isso irá apagar os confrontos e resultados, voltando para a tela de configuração inicial dos times.") },
+            title = { Text(stringResource(R.string.resetar_torneio_dialog_titulo)) },
+            text = { Text(stringResource(R.string.resetar_torneio_dialog_texto)) },
             confirmButton = {
                 Button(onClick = {
                     val faseInicial = uiState.faseAtualConfig
@@ -307,31 +310,30 @@ fun TelaMataMata(navController: NavHostController, campeonatoId: Int) {
                         ?.map { it.copy(status = TimeMataMata.Status.NEUTRO) } ?: uiState.timesIniciais
                     setState(MataMataUiState(faseAtualConfig = faseInicial, timesIniciais = timesParaManter))
                     showResetDialog = false
-                }) { Text("Resetar") }
+                }) { Text(stringResource(R.string.resetar)) }
             },
-            dismissButton = { OutlinedButton(onClick = { showResetDialog = false }) { Text("Cancelar") } }
+            dismissButton = { OutlinedButton(onClick = { showResetDialog = false }) { Text(stringResource(R.string.cancelar)) } }
         )
     }
 
     if (showClearDialog) {
         AlertDialog(
             onDismissRequest = { showClearDialog = false },
-            title = { Text("Limpar Tudo?") },
-            text = { Text("Isso irá apagar todos os dados deste torneio. Esta ação não pode ser desfeita.") },
+            title = { Text(stringResource(R.string.limpar_tudo_dialog_titulo)) },
+            text = { Text(stringResource(R.string.limpar_tudo_dialog_texto)) },
             confirmButton = {
                 Button(onClick = {
                     setState(MataMataUiState())
                     showClearDialog = false
-                }) { Text("Limpar Tudo") }
+                }) { Text(stringResource(R.string.limpar_tudo_btn)) }
             },
-            dismissButton = { OutlinedButton(onClick = { showClearDialog = false }) { Text("Cancelar") } }
+            dismissButton = { OutlinedButton(onClick = { showClearDialog = false }) { Text(stringResource(R.string.cancelar)) } }
         )
     }
 }
 
 
 // --- COMPOSABLES REUTILIZÁVEIS ---
-// (O resto do arquivo permanece o mesmo, sem alterações)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConfiguracaoInicialTorneio(
@@ -348,7 +350,7 @@ fun ConfiguracaoInicialTorneio(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            "Configurar Torneio",
+            stringResource(R.string.configurar_torneio_titulo),
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp,
             modifier = Modifier.padding(bottom = 16.dp)
@@ -361,10 +363,10 @@ fun ConfiguracaoInicialTorneio(
             modifier = Modifier.fillMaxWidth()
         ) {
             OutlinedTextField(
-                value = faseAtualConfig.label,
+                value = stringResource(faseAtualConfig.labelResId),
                 onValueChange = {},
                 readOnly = true,
-                label = { Text("Fase Inicial") },
+                label = { Text(stringResource(R.string.fase_inicial_label)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = Modifier
                     .menuAnchor()
@@ -377,7 +379,7 @@ fun ConfiguracaoInicialTorneio(
                 FaseTorneio.entries.forEach { fase ->
                     if (fase != FaseTorneio.FINAL) {
                         DropdownMenuItem(
-                            text = { Text(fase.label) },
+                            text = { Text(stringResource(fase.labelResId)) },
                             onClick = {
                                 onSetFaseInicial(fase)
                                 expanded = false
@@ -400,7 +402,7 @@ fun ConfiguracaoInicialTorneio(
                 OutlinedTextField(
                     value = timesIniciais[idx].nome,
                     onValueChange = { onUpdateTime(idx, it) },
-                    label = { Text("Time ${idx + 1}") },
+                    label = { Text(stringResource(R.string.time_label, idx + 1)) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -412,7 +414,7 @@ fun ConfiguracaoInicialTorneio(
             enabled = timesIniciais.all { it.nome.isNotBlank() },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("Iniciar Mata-Mata")
+            Text(stringResource(R.string.iniciar_mata_mata_btn))
         }
     }
 }
@@ -436,7 +438,7 @@ fun MataMataConfrontoCard(
                 .padding(16.dp)
         ) {
             Text(
-                text = confronto.fase.label,
+                text = stringResource(confronto.fase.labelResId),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.align(Alignment.End)
@@ -448,7 +450,7 @@ fun MataMataConfrontoCard(
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 TimeConfrontoBox(time = confronto.timeA)
-                Text("X", fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
+                Text(stringResource(R.string.confronto_x), fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
                 TimeConfrontoBox(time = confronto.timeB)
             }
             Spacer(Modifier.height(12.dp))
@@ -464,7 +466,7 @@ fun MataMataConfrontoCard(
                     enabled = !confronto.finalizado
                 )
                 Spacer(Modifier.width(8.dp))
-                Text("-", fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.confronto_separador_gols), fontSize = 24.sp, fontWeight = FontWeight.Bold)
                 Spacer(Modifier.width(8.dp))
                 GolsTextField(
                     value = confronto.golsB,
@@ -480,7 +482,7 @@ fun MataMataConfrontoCard(
                     modifier = Modifier.fillMaxWidth(),
                     enabled = confronto.golsA.isNotBlank() && confronto.golsB.isNotBlank()
                 ) {
-                    Text("Finalizar Partida")
+                    Text(stringResource(R.string.finalizar_partida_btn))
                 }
             }
         }
@@ -525,7 +527,7 @@ fun TimeConfrontoBox(time: TimeMataMata) {
         ) {
             Icon(
                 imageVector = if (time.status == TimeMataMata.Status.CAMPEAO) Icons.Default.EmojiEvents else Icons.Default.Star,
-                contentDescription = if (time.status == TimeMataMata.Status.CAMPEAO) "Campeão" else "Vencedor",
+                contentDescription = if (time.status == TimeMataMata.Status.CAMPEAO) stringResource(R.string.campeao_content_desc) else stringResource(R.string.vencedor_content_desc),
                 tint = contentColor,
                 modifier = Modifier
                     .size(24.dp)
@@ -549,7 +551,7 @@ fun GolsTextField(
                 onValueChange(it)
             }
         },
-        label = { Text("Gols") },
+        label = { Text(stringResource(R.string.gols_label)) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         singleLine = true,
         modifier = modifier,
@@ -576,13 +578,13 @@ fun CampeaoCard(campeao: TimeMataMata) {
         ) {
             Icon(
                 imageVector = Icons.Default.EmojiEvents,
-                contentDescription = "Troféu de Campeão",
+                contentDescription = stringResource(R.string.trofeu_campeao_content_desc),
                 tint = Color(0xFFDAA520),
                 modifier = Modifier.size(64.dp)
             )
             Spacer(Modifier.height(16.dp))
             Text(
-                "O GRANDE CAMPEÃO É:",
+                stringResource(R.string.o_grande_campeao_e),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFFDAA520)
