@@ -193,4 +193,4 @@ Este repositório segue o padrão [Conventional Commits](https://www.conventiona
 
 Dúvidas ou sugestões? Abra uma issue ou entre em contato com a equipe:
 
-- luizcury19@gmail.com
+- gl9736387@gmail.com
